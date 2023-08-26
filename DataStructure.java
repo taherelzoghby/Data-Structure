@@ -88,29 +88,7 @@ public class DataStructure {
         System.out.println("");
     }
 
-    static int count = 0;
-//fib
-
-    static int fib2(int n) {
-        if (n == 0 || n == 1) {
-            return n;
-        } else {
-            return fib2(n - 1) + fib2(n - 2);
-        }
-    }
-    static int n1 = 0, n2 = 1, sum = 0;
-
-    static void fib(int n) {
-        if (n > 0) {
-            sum = n1 + n2;
-            n1 = n2;
-            n2 = sum;
-            System.out.print(" " + sum);
-            fib(n - 1);
-        }
-
-    }
-
+   static int count = 0;
     static int linearSum(int[] data, int n) {
         if (n < 0) {
             return 0;
@@ -294,36 +272,53 @@ public class DataStructure {
         print_preOrder(node.right);
     }
 
-    public static void clear(Node node) {
+    static int first = 0, second = 1;
 
+    static void fibon(int n) {
+        if (n == 2) {
+            return;
+        }
+        int sum = first + second;//1 2 3 5 8 13
+        first = second;//1 1 2 3 5 8
+        second = sum;//1 2 3 5 8 13
+        System.out.print(sum + " ");
+        fibon(n - 1);
+    }
+    static int fib(int n) {
+        if(n==1||n==0){
+            return n;
+        }else{
+            return fib(n-1)+fib(n-2);//0 1 1 2 3 5 8 13 21 34
+        }
     }
 
     public static void main(String[] args) {
+        System.out.print("fib : "+fib(9));//position(9)=>34
         BinaryTree tree = new BinaryTree(2);
         Vector<Integer> values1 = new Vector<Integer>();
-        values1.add(3);
-        values1.add(5);
+        values1.add(4);
+        values1.add(8);
         Vector<Character> directions1 = new Vector<>();
         directions1.add('L');
         directions1.add('L');
         tree.add(values1, directions1);
-        Vector<Integer> values11 = new Vector<>();
-        values11.add(3);
-         values11.add(16);
-        Vector<Character> directions11 = new Vector<>();
-        directions11.add('L');
-        directions11.add('R');
-        tree.add(values11, directions11);
+        //Vector<Integer> values11 = new Vector<>();
+        //values11.add(3);
+        //values11.add(16);
+        //Vector<Character> directions11 = new Vector<>();
+        //directions11.add('L');
+       // directions11.add('R');
+        //tree.add(values11, directions11);
         Vector<Integer> values2 = new Vector<>();
-        values2.add(13);
-        values2.add(7);
+        values2.add(3);
+        values2.add(6);
         Vector<Character> directions2 = new Vector<>();
         directions2.add('R');
         directions2.add('L');
         tree.add(values2, directions2);
         Vector<Integer> values3 = new Vector<>();
-        values3.add(13);
-        values3.add(8);
+        values3.add(3);
+        values3.add(5);
         Vector<Character> directions3 = new Vector<>();
         directions3.add('R');
         directions3.add('R');
@@ -337,13 +332,14 @@ public class DataStructure {
         System.out.println();
         System.out.println("max : " + tree.tree_max());
         System.out.println("min : " + tree.tree_min());
-        System.out.println("Height : " + (tree.tree_height(tree)-1));
+        System.out.println("Height : " + (tree.tree_height(tree) - 1));
         System.out.println("Height : " + tree.tree_height1());
-        System.out.println("total nodes : "+tree.total_nodes());
-        System.out.println("total leaf nodes : "+tree.total_leaf_nodes());
-        System.out.println("Value is exist : "+tree.is_exists(8));
-        System.out.println("Tree is perfect : "+tree.is_perfect());
+        System.out.println("total nodes : " + tree.total_nodes());
+        System.out.println("total leaf nodes : " + tree.total_leaf_nodes());
+        System.out.println("Value is exist : " + tree.is_exists(8));
+        System.out.println("Tree is perfect : " + tree.is_perfect());
         System.out.println(tree.checkTree(tree));
+        tree.levelOrderTraversal();
 
 //        Node plus = new Node('+');
 //        plus.left = new Node('2');

@@ -1,6 +1,9 @@
 package tree;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Vector;
+import queue.queue;
 
 public class BinaryTree {
 
@@ -12,7 +15,31 @@ public class BinaryTree {
         this.data = data;
     }
 
-    public Boolean is_exists(int value) {
+    public void levelOrderTraversal() {
+        int level = 0;
+        queue<BinaryTree> que=new queue<>(4);
+        que.enqueue(this);
+        while (!que.isEmpty()) {
+            int size = que.count();
+            System.out.print("Level " + level+" : ");
+            while (size > 0) {
+                BinaryTree curr = (BinaryTree) que.frontQueue();
+                que.dequeue();
+                System.out.print(" " + curr.data);
+                if (curr.left != null) {
+                    que.enqueue(curr.left);
+                }
+                if (curr.right != null) {
+                    que.enqueue(curr.right);
+                }
+                size--;
+            }
+            level++;
+            System.out.println();
+        }
+    }
+
+    public boolean is_exists(int value) {
         boolean result = data == value;//false, 
         if (!result && left != null) {
             result = left.is_exists(value);
