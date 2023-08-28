@@ -340,8 +340,11 @@ public class DataStructure {
         System.out.println("Tree is perfect : " + tree.is_perfect());
         System.out.println(tree.checkTree(tree));
         tree.levelOrderTraversal();
+<<<<<<< HEAD
         tree.level_order_traversal_recursive();
         tree.level_order_traversal_spiral();
+=======
+>>>>>>> ec274c73441d688240a088ca44a411d438ce4d70
 
 //        Node plus = new Node('+');
 //        plus.left = new Node('2');
