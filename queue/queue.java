@@ -8,12 +8,15 @@ public class queue<T> {
     private int front = 0;
     private int rear = 0;
     final private int size;
-    public int add_elements;
+    private int add_elements=0;
     Object[] arr;
 
     public queue(int size) {
         this.size = size;
         arr = new Object[this.size];
+    }
+    public int count(){
+        return this.add_elements;
     }
 
     public boolean isEmpty() {

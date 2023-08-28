@@ -1,6 +1,11 @@
 package tree;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Vector;
+import queue.queue;
 
 public class BinaryTree {
 
@@ -12,7 +17,93 @@ public class BinaryTree {
         this.data = data;
     }
 
-    public Boolean is_exists(int value) {
+    public void levelOrderTraversal() {
+        int level = 0;
+        Queue<BinaryTree> que =new LinkedList<>();
+        que.add(this);
+        while (!que.isEmpty()) {
+            int size = que.size();
+            System.out.print("Level " + level + " : ");
+            while (size > 0) {
+                BinaryTree curr = (BinaryTree) que.peek();
+                que.remove();
+                System.out.print(" " + curr.data);
+                if (curr.left != null) {
+                    que.add(curr.left);
+                }
+                if (curr.right != null) {
+                    que.add(curr.right);
+                }
+                size--;
+            }
+            level++;
+            System.out.println();
+        }
+    }
+
+    public void level_order_traversal_recursive() {
+        int h = tree_height1();
+        for (int i = 0; i <= h; i++) {
+            System.out.print("level " + i + " : ");
+            print_level_order(i);
+            System.out.println();
+        }
+
+    }
+
+    public void print_level_order(int level) {
+        if (level == 0) {
+            System.out.print(data + " ");
+        } else {
+            if (left != null) {
+                left.print_level_order(level - 1);
+            }
+            if (right != null) {
+                right.print_level_order(level - 1);
+            }
+        }
+    }
+
+    public void level_order_traversal_spiral() {
+        int level=0;
+        Deque<BinaryTree> queue =new ArrayDeque<>();
+        queue.add(this);
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            System.out.print("level "+level+" : ");
+            while(size>0){
+                BinaryTree current;
+                if(level%2==0){
+                    current=(BinaryTree) queue.getFirst();
+                    queue.removeFirst();
+                    if(current.left!=null){
+                        queue.addLast(current.left);
+                    }
+                    if(current.right!=null){
+                        queue.addLast(current.right);
+                    }
+                }else{
+                   current=(BinaryTree) queue.getLast();
+                    queue.removeLast();
+                    if(current.right!=null){
+                        queue.addFirst(current.right);
+                    }
+                    if(current.left!=null){
+                        queue.addFirst(current.left);
+                    }
+                }
+                System.out.print (current.data+" ");
+                size--;
+            }
+            level++;
+            System.out.println();
+        }
+        
+       
+        
+    }
+
+    public boolean is_exists(int value) {
         boolean result = data == value;//false, 
         if (!result && left != null) {
             result = left.is_exists(value);
