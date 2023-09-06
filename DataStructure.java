@@ -1,4 +1,6 @@
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Vector;
 import tree.BinaryTree;
 import tree.Node;
@@ -88,7 +90,8 @@ public class DataStructure {
         System.out.println("");
     }
 
-   static int count = 0;
+    static int count = 0;
+
     static int linearSum(int[] data, int n) {
         if (n < 0) {
             return 0;
@@ -284,45 +287,59 @@ public class DataStructure {
         System.out.print(sum + " ");
         fibon(n - 1);
     }
+
     static int fib(int n) {
-        if(n==1||n==0){
+        if (n == 1 || n == 0) {
             return n;
-        }else{
-            return fib(n-1)+fib(n-2);//0 1 1 2 3 5 8 13 21 34
+        } else {
+            return fib(n - 1) + fib(n - 2);//0 1 1 2 3 5 8 13 21 34
         }
     }
 
     public static void main(String[] args) {
-        System.out.print("fib : "+fib(9));//position(9)=>34
-        BinaryTree tree = new BinaryTree(2);
+        System.out.print("fib : " + fib(9));//position(9)=>34
+        BinaryTree tree = new BinaryTree(1);
         Vector<Integer> values1 = new Vector<Integer>();
-        values1.add(4);
-        values1.add(8);
+        values1.add(5);
+        values1.add(7);
+        values1.add(9);
         Vector<Character> directions1 = new Vector<>();
         directions1.add('L');
         directions1.add('L');
+        directions1.add('L');
         tree.add(values1, directions1);
-        //Vector<Integer> values11 = new Vector<>();
-        //values11.add(3);
-        //values11.add(16);
-        //Vector<Character> directions11 = new Vector<>();
-        //directions11.add('L');
-       // directions11.add('R');
-        //tree.add(values11, directions11);
+        Vector<Integer> values11 = new Vector<>();
+        values11.add(5);
+        values11.add(7);
+        values11.add(8);
+        Vector<Character> directions11 = new Vector<>();
+        directions11.add('L');
+        directions11.add('L');
+        directions11.add('R');
+        tree.add(values11, directions11);
         Vector<Integer> values2 = new Vector<>();
-        values2.add(3);
+        values2.add(5);
         values2.add(6);
+        values2.add(10);
         Vector<Character> directions2 = new Vector<>();
+        directions2.add('L');
         directions2.add('R');
         directions2.add('L');
         tree.add(values2, directions2);
         Vector<Integer> values3 = new Vector<>();
+        values3.add(20);
         values3.add(3);
-        values3.add(5);
         Vector<Character> directions3 = new Vector<>();
         directions3.add('R');
         directions3.add('R');
         tree.add(values3, directions3);
+        Vector<Integer> values33 = new Vector<>();
+        values33.add(20);
+        values33.add(22);
+        Vector<Character> directions33 = new Vector<>();
+        directions33.add('R');
+        directions33.add('L');
+        tree.add(values33, directions33);
         System.out.println();
         tree.in_order();
         System.out.println();
@@ -340,12 +357,9 @@ public class DataStructure {
         System.out.println("Tree is perfect : " + tree.is_perfect());
         System.out.println(tree.checkTree(tree));
         tree.levelOrderTraversal();
-<<<<<<< HEAD
         tree.level_order_traversal_recursive();
         tree.level_order_traversal_spiral();
-=======
->>>>>>> ec274c73441d688240a088ca44a411d438ce4d70
-
+        System.out.println("nonleafs : " + tree.total_nonLeaf_nodes());
 //        Node plus = new Node('+');
 //        plus.left = new Node('2');
 //        plus.right = new Node('3');

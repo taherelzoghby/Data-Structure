@@ -2,6 +2,7 @@ package tree;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Vector;
@@ -17,9 +18,41 @@ public class BinaryTree {
         this.data = data;
     }
 
+    public BinaryTree(Deque<Integer> inOrder, Deque<Integer> preOrder, int startInorder, int endInorder) {
+        if (endInorder == -1) {
+            endInorder = inOrder.size() - 1;
+        }
+        data = preOrder.getFirst();
+        preOrder.pollFirst();
+        for (int i = startInorder; i <= endInorder; i++) {
+            if (data == (int) getElementDeque(inOrder, i)) {
+                if (startInorder < i) {
+                    left = new BinaryTree(inOrder, preOrder, startInorder, i - 1);
+                }
+                if (endInorder > i) {
+                    right = new BinaryTree(inOrder, preOrder, i + 1, endInorder);
+                }
+                break;
+            }
+        }
+
+    }
+
+    public int getElementDeque(Deque q, int index) {
+        Iterator it = q.iterator();
+        int count = 0;
+        while (it.hasNext()) {
+            int object = (int) it.next();
+            if (count == index) {
+                return object;
+            }
+        }
+        return 0;
+    }
+
     public void levelOrderTraversal() {
         int level = 0;
-        Queue<BinaryTree> que =new LinkedList<>();
+        Queue<BinaryTree> que = new LinkedList<>();
         que.add(this);
         while (!que.isEmpty()) {
             int size = que.size();
@@ -65,42 +98,39 @@ public class BinaryTree {
     }
 
     public void level_order_traversal_spiral() {
-        int level=0;
-        Deque<BinaryTree> queue =new ArrayDeque<>();
-        queue.add(this);
-        while(!queue.isEmpty()){
-            int size=queue.size();
-            System.out.print("level "+level+" : ");
-            while(size>0){
+        int level = 0;
+        Deque<BinaryTree> queue = new ArrayDeque<>();
+        queue.add(this);//2
+        while (!queue.isEmpty()) {
+            int size = queue.size();//1->2
+            System.out.print("level " + level + " : ");
+            while (size > 0) {
                 BinaryTree current;
-                if(level%2==0){
-                    current=(BinaryTree) queue.getFirst();
+                if (level % 2 == 0) {
+                    current = (BinaryTree) queue.getFirst();
                     queue.removeFirst();
-                    if(current.left!=null){
+                    if (current.left != null) {
                         queue.addLast(current.left);
                     }
-                    if(current.right!=null){
+                    if (current.right != null) {
                         queue.addLast(current.right);
                     }
-                }else{
-                   current=(BinaryTree) queue.getLast();
+                } else {
+                    current = (BinaryTree) queue.getLast();
                     queue.removeLast();
-                    if(current.right!=null){
+                    if (current.right != null) {
                         queue.addFirst(current.right);
                     }
-                    if(current.left!=null){
+                    if (current.left != null) {
                         queue.addFirst(current.left);
                     }
                 }
-                System.out.print (current.data+" ");
+                System.out.print(current.data + " ");
                 size--;
             }
             level++;
             System.out.println();
         }
-        
-       
-        
     }
 
     public boolean is_exists(int value) {
@@ -132,7 +162,7 @@ public class BinaryTree {
         }
     }
 
-    public int tree_max() {
+    public int tree_max() {//o(n) ,worst if tree unBalanced :o(n^2) 
         int res = data;//2
         if (left != null) {
             res = Math.max(res, left.tree_max());//2,3=3   -13,7=13
@@ -182,6 +212,17 @@ public class BinaryTree {
         }
         if (right != null) {
             count += right.total_nodes();
+        }
+        return count;
+    }
+
+    public int total_nonLeaf_nodes() {
+        int count = (right == null && left == null) ? 0 : 1;
+        if (left != null) {
+            count += left.total_nonLeaf_nodes();
+        }
+        if (right != null) {
+            count += right.total_nonLeaf_nodes();
         }
         return count;
     }
@@ -238,4 +279,6 @@ public class BinaryTree {
     public boolean checkTree(BinaryTree root) {
         return (root.left != null && root.right != null) && (root.left.data + root.right.data == root.data);
     }
+    ////////////////////////////////////////////
+
 }
