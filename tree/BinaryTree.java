@@ -1,6 +1,8 @@
 package tree;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -17,6 +19,7 @@ public class BinaryTree {
     public BinaryTree(int data) {
         this.data = data;
     }
+//get tree from inOrder and preOrder
 
     public BinaryTree(Deque<Integer> inOrder, Deque<Integer> preOrder, int startInorder, int endInorder) {
         if (endInorder == -1) {
@@ -206,7 +209,6 @@ public class BinaryTree {
 
     public int total_nodes() {
         int count = 1;
-
         if (left != null) {
             count += left.total_nodes();
         }
@@ -279,6 +281,74 @@ public class BinaryTree {
     public boolean checkTree(BinaryTree root) {
         return (root.left != null && root.right != null) && (root.left.data + root.right.data == root.data);
     }
-    ////////////////////////////////////////////
 
+    ////////////////////////////////////////////
+    public void print_preorder_complete() {
+        System.out.print(data + " ");
+        if (left != null) {
+            left.print_preorder_complete();
+        } else {
+            System.out.print(" () ");
+        }
+        if (right != null) {
+            right.print_preorder_complete();
+        } else {
+            System.out.print(" () ");
+        }
+    }
+
+    public String print_parenthsizing() {
+        String result = "(" + data;
+        if (left != null) {
+            result += left.print_parenthsizing();
+        } else {
+            result += "()";
+        }
+
+        if (right != null) {
+            result += right.print_parenthsizing();
+
+        } else {
+            result += "()";
+        }
+        result += ")";
+        return result;
+    }
+
+    public String parenthsizing_Canonicalizing() {
+        String result = "(" + data;
+        Vector<String> q = new Vector<>();
+        if (left != null) {
+            q.add(left.print_parenthsizing());
+        } else {
+            result += "()";
+        }
+
+        if (right != null) {
+            q.add(right.print_parenthsizing());
+        } else {
+            result += "()";
+        }
+        Collections.sort(q);
+        result = result.concat(merge(q));
+        result += ")";
+        return result;
+    }
+
+    public String merge(Vector<String> vector) {
+        String result = "";
+        for (int i = 0; i < vector.size(); i++) {
+            result += vector.get(i);
+        }
+        return result;
+    }
+
+    public boolean isIdentical1(String tree1, String tree2) {
+        return tree1.equals(tree2);
+    }
+
+    public boolean isIdentical2() {
+
+        return false;
+    }
 }

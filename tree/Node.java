@@ -2,14 +2,11 @@ package tree;
 
 public class Node<T> {
 
-    public Object data;
+    public int data;
     public Node left;
     public Node right;
 
-    public Node(Object data) {
+    public Node(int data) {
         this.data = data;
     }
-
-    
-
 }
