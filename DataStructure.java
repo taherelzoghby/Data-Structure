@@ -1,5 +1,5 @@
 
-import java.util.Vector;
+import Vector.Vector;
 import tree.BST;
 import tree.BinarySearchTree;
 import tree.BinaryTree;
@@ -298,32 +298,42 @@ public class DataStructure {
     }
 
     public static void main(String[] args) {
-        BinarySearchTree tree = new BinarySearchTree(60);
-        tree.insert(25);
-        tree.insert(75);
-        tree.insert(5);
-        tree.insert(15);
-        tree.insert(65);
-        tree.insert(70);
-        tree.insert(85);
-        tree.insert(95);
-        tree.insert(80);
-        System.out.println("min tree : " + tree.minTree(tree.root));
-        tree.printInOrder();
-        System.out.println(tree.search(5));
-        Vector<Node> path = new Vector<>();
-        tree.find_path(70, path);
-        Node node=tree.get_next(path);
-        for (int i = 0; i < path.size(); i++) {
-            System.out.print(path.get(i).data + " ");
+        
+        
+        Vector vector=new Vector(10);
+        for(int i=0;i<10;i++){
+            vector.set(i, i*2);
         }
-        System.out.println("\n"+node.data);
-        tree.emptyLine();
-        System.out.println(tree.isBinarySearchTreeIterative());
-        System.out.println("successor : "+tree.successor(25));
-        tree.printInOrder();
-        tree.deleteNode(75,tree.root);
-        tree.printInOrder();
+        System.out.println(vector.length());
+        vector.print();
+        System.out.println("");
+        System.out.println(vector.find(16));
+//        BinarySearchTree tree = new BinarySearchTree(60);
+//        tree.insert(25);
+//        tree.insert(75);
+//        tree.insert(5);
+//        tree.insert(15);
+//        tree.insert(65);
+//        tree.insert(70);
+//        tree.insert(85);
+//        tree.insert(95);
+//        tree.insert(80);
+//        System.out.println("min tree : " + tree.minTree(tree.root));
+//        tree.printInOrder();
+//        System.out.println(tree.search(5));
+//        Vector<Node> path = new Vector<>();
+//        tree.find_path(70, path);
+//        Node node=tree.get_next(path);
+//        for (int i = 0; i < path.size(); i++) {
+//            System.out.print(path.get(i).data + " ");
+//        }
+//        System.out.println("\n"+node.data);
+//        tree.emptyLine();
+//        System.out.println(tree.isBinarySearchTreeIterative());
+//        System.out.println("successor : "+tree.successor(25));
+//        tree.printInOrder();
+//        tree.deleteNode(75,tree.root);
+//        tree.printInOrder();
 
 //        items.add(10);
 //        items.add(20);
