@@ -1,4 +1,5 @@
 
+import Heap.MinHeap;
 import Vector.Vector;
 import tree.BST;
 import tree.BinarySearchTree;
@@ -32,39 +33,6 @@ public class DataStructure {
                 j--;
             }
             arr[j + 1] = key;
-        }
-    }
-
-    static void bubbleSort(int[] arr) {
-        int size = arr.length;
-        boolean flag = true;
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                    flag = false;
-                }
-            }
-            if (flag == true) {
-                break;
-            }
-        }
-    }
-
-    static void selectionSort(int[] arr) {
-        int size = arr.length, minInd = 0;
-        for (int i = 0; i < size - 1; i++) {
-            minInd = i;
-            for (int j = i + 1; j < size; j++) {
-                if (arr[j] < arr[minInd]) {
-                    minInd = j;
-                }
-            }
-            int temp = arr[minInd];
-            arr[minInd] = arr[i];
-            arr[i] = temp;
         }
     }
 
@@ -178,40 +146,6 @@ public class DataStructure {
         drawLine(tickLength, -1);
     }
 
-    //loop
-    public static boolean binarySearch(int[] array, int target) {
-        int low = 0;
-        int high = array.length - 1;
-        int mid;
-        while (low <= high) {
-            mid = (low + high) / 2;
-            if (target < array[mid]) {
-                high = mid - 1;
-            } else if (target > array[mid]) {
-                low = mid + 1;
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //recursion
-    public static boolean binarySearch(int[] array, int target, int low, int high) {
-        int mid;
-        while (low <= high) {
-            mid = (low + high) / 2;
-            if (target < array[mid]) {
-                return binarySearch(array, target, low, mid - 1);
-            } else if (target > array[mid]) {
-                return binarySearch(array, target, mid + 1, high);
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static void reverseArr(int[] array, int low, int high) {
         if (low < high) {
             int temp = array[low];
@@ -297,17 +231,155 @@ public class DataStructure {
         }
     }
 
-    public static void main(String[] args) {
-        
-        
-        Vector vector=new Vector(10);
-        for(int i=0;i<10;i++){
-            vector.set(i, i*2);
+    //loop
+    public static boolean binarySearch(int[] array, int target) {
+        int low = 0;
+        int high = array.length - 1;
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (target < array[mid]) {
+                high = mid - 1;
+            } else if (target > array[mid]) {
+                low = mid + 1;
+            } else {
+                return true;
+            }
         }
-        System.out.println(vector.length());
+        return false;
+    }
+
+    //recursion
+    public static boolean binarySearch(int[] array, int target, int low, int high) {
+        int mid;
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (target < array[mid]) {
+                return binarySearch(array, target, low, mid - 1);
+            } else if (target > array[mid]) {
+                return binarySearch(array, target, mid + 1, high);
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static void bubbleSort(int[] arr) {
+        int size = arr.length;
+        boolean flag = true;
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    flag = false;
+                }
+            }
+            if (flag == true) {
+                break;
+            }
+        }
+    }
+
+    static void selectionSort(int[] arr) {
+        int size = arr.length, minInd = 0;
+        for (int i = 0; i < size - 1; i++) {
+            minInd = i;
+            for (int j = i + 1; j < size; j++) {
+                if (arr[j] < arr[minInd]) {
+                    minInd = j;
+                }
+            }
+            int temp = arr[minInd];
+            arr[minInd] = arr[i];
+            arr[i] = temp;
+        }
+    }
+
+    public static int sum(int n1, int n2) {
+        return n1 + n2;
+    }
+
+    public static int subtract(int n1, int n2) {
+        return n1 - n2;
+    }
+
+    public static int multiple(int n1, int n2) {
+        return n1 * n2;
+    }
+
+    public static void main(String[] args) {
+//        int num1 = 10;
+//        int num2 = 20;
+//        // Execute methods in parallel
+//        Thread thread1 = new Thread() {
+//            public void run() {
+//                System.out.println("thread 1 : " + sum(num1, num2));
+//            }
+//        };
+//        Thread thread2 = new Thread() {
+//            public void run() {
+//                System.out.println("thread 2 : " + subtract(num1, num2));
+//            }
+//        };
+//        Thread thread3 = new Thread() {
+//            public void run() {
+//                System.out.println("thread 3 : " + multiple(num1, num2));
+//            }
+//        };
+//
+//        thread1.start();
+//        thread2.start();
+//        thread3.start();
+//
+//        System.out.println("");
+//        // Execute methods sequentially
+//        System.out.println(sum(num1, num2));
+//        System.out.println(subtract(num1, num2));
+//        System.out.println(multiple(num1, num2));
+///heap
+//        MinHeap heap = new MinHeap();
+//        heap.push(2);
+//        heap.push(6);
+//        heap.push(8);
+//        heap.push(14);
+//        heap.push(7);
+//        heap.push(10);
+//        heap.push(19);
+//        heap.push(37);
+//        heap.push(25);
+//        heap.push(30);
+//        heap.push(12);
+//        heap.push(22);
+//        heap.push(17);
+//        heap.push(5);
+//        heap.push(4);
+//        heap.print();
+//        System.out.println(heap.top());
+/////vector
+        Vector<Integer> vector = new Vector(5);
+        vector.pushBack(2);
+        vector.pushBack(4);
+        vector.pushBack(6);
+        System.out.println("");
+        vector.insert(44, 0);
+        vector.insert(11, 1);
+        vector.insert(32, 2);
+        vector.insert(23, 3);
+        vector.insert(41, 4);
         vector.print();
         System.out.println("");
-        System.out.println(vector.find(16));
+        System.out.println(vector.lengthOfNums());
+        //////////////////////////////////////////////////////////////////////
+        vector.insert(20, 1);
+        vector.print();
+        System.out.println("");
+        System.out.println(vector.lengthOfNums());
+        System.out.println(vector.find_transposition(41));
+        vector.print();
+        System.out.println("");
 //        BinarySearchTree tree = new BinarySearchTree(60);
 //        tree.insert(25);
 //        tree.insert(75);
@@ -334,7 +406,6 @@ public class DataStructure {
 //        tree.printInOrder();
 //        tree.deleteNode(75,tree.root);
 //        tree.printInOrder();
-
 //        items.add(10);
 //        items.add(20);
 //        items.add(30);
