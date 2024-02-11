@@ -2,13 +2,13 @@ package Heap;
 
 import java.util.Vector;
 
-public class MinHeap {
+public class MaxHeap {
 
     int[] array;
     int size;
     int capacity = 1000;
 
-    public MinHeap(Vector<Integer> v) {//o(n)
+    public MaxHeap(Vector<Integer> v) {//o(n)
 
         array = new int[this.capacity];
         this.size = v.size();
@@ -40,7 +40,7 @@ public class MinHeap {
     public void heap_up(int chldPos) {//o(logn)
         int indexP = parent(chldPos);
         if (indexP != -1) {
-            if (array[indexP] > array[chldPos]) {
+            if (array[indexP] < array[chldPos]) {
                 ///swap
                 int temp = array[indexP];
                 array[indexP] = array[chldPos];
@@ -58,15 +58,15 @@ public class MinHeap {
     }
 
     public void heap_down(int indexP) {//o(logn)
-        int indexC1 = left(indexP);
-        int indexC2 = right(indexP);
+        int indexC1 = left(indexP);//5->2
+        int indexC2 = right(indexP);//6->4
         if (indexC1 == -1) {
             return;
         }
-        if (indexC2 != -1 && array[indexC2] < array[indexC1]) {
+        if (indexC2 != -1 && array[indexC2] > array[indexC1]) {
             indexC1 = indexC2;
         }
-        if (array[indexP] > array[indexC1]) {
+        if (array[indexP] < array[indexC1]) {
             ///swap
             int temp = array[indexC1];
             array[indexC1] = array[indexP];
@@ -99,7 +99,7 @@ public class MinHeap {
     }
 
     public void print() {//o(n)
-        System.out.print("Min Heap elements : ");
+        System.out.print("Max Heap elements : ");
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
         }
