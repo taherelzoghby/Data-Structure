@@ -2,23 +2,23 @@ package linkedList;
 
 public class linkedListWithoutTail<T> {
 
-    node head;
+    NodeLinked head;
 
     public linkedListWithoutTail() {
         head = null;
     }
 
     public void addElement(T value) {
-        node n_node = new node(value);
+        NodeLinked n_node = new NodeLinked(value);
         n_node.next = head;
         head = n_node;
     }
 
-    public node getTail() {
+    public NodeLinked getTail() {
         if (head == null) {
             return null;
         }
-        node curr = head;
+        NodeLinked curr = head;
         for (; curr.next != null; curr = curr.next) {
         }
         return curr;
@@ -26,7 +26,7 @@ public class linkedListWithoutTail<T> {
 
     public void print() {
 
-        for (node curr = head; curr != null; curr = curr.next) {
+        for (NodeLinked curr = head; curr != null; curr = curr.next) {
             System.out.print(curr.value + " ");
         }
         System.out.println("");

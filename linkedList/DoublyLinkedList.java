@@ -6,28 +6,28 @@ public class DoublyLinkedList {
     private Node_DLL tail;
     private int length;
 
-    public DoublyLinkedList() {
+    public DoublyLinkedList() {//o(1)
         this.head = this.tail = null;
         this.length = 0;
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty() {//o(1)
         return head == null && tail == null;
     }
 
-    public int size() {
+    public int size() {//o(1)
         return this.length;
     }
 
-    public Node_DLL headNode() {
+    public Node_DLL headNode() {//o(1)
         return this.head;
     }
 
-    public Node_DLL tailNode() {
+    public Node_DLL tailNode() {//o(1)
         return this.tail;
     }
 
-    public void addFirst(Object value) {
+    public void addFirst(Object value) {//o(1)
         Node_DLL newNode = new Node_DLL(value);
         if (isEmpty()) {
             head = tail = newNode;
@@ -38,7 +38,7 @@ public class DoublyLinkedList {
         ++length;
     }
 
-    public void addLast(Object value) {
+    public void addLast(Object value) {//o(1)
         Node_DLL newNode = new Node_DLL(value);
         if (isEmpty()) {
             tail = head = newNode;
@@ -49,7 +49,7 @@ public class DoublyLinkedList {
         ++length;
     }
 
-    public void insertedSorted(int val) {
+    public void insertedSorted(int val) {//o(n)
         Node_DLL newNode = new Node_DLL(val);
         if ((int) head.value >= val) {
             addFirst(val);
@@ -66,7 +66,7 @@ public class DoublyLinkedList {
         ++length;
     }
 
-    public void deleteFront() {
+    public void deleteFront() {//o(1)
         if (head == null) {
             return;
         }
@@ -82,7 +82,7 @@ public class DoublyLinkedList {
         --length;
     }
 
-    public void deleteLast() {
+    public void deleteLast() {//o(1)
         if (head == null) {
             return;
         }
@@ -98,7 +98,7 @@ public class DoublyLinkedList {
         --length;
     }
 
-    public Node_DLL delete_and_link(Node_DLL item) {
+    public Node_DLL delete_and_link(Node_DLL item) {//o(1)
         Node_DLL it = item.prev;
         link(item.prev, item.next);//link previous item with next of item
         deleteNode(item);
@@ -106,7 +106,7 @@ public class DoublyLinkedList {
         return it;
     }
 
-    public void deleteAllNodesWithKey(int val) {
+    public void deleteAllNodesWithKey(int val) {//o(n)
         if (length == 0) {
             System.out.println("list is Empty!");
             return;
@@ -125,7 +125,7 @@ public class DoublyLinkedList {
         deleteFront();
     }
 
-    public void delete_even_positions() {
+    public void delete_even_positions() {//o(n)
         if (length == 0) {
             System.out.println("list is Empty!");
             return;
@@ -139,14 +139,14 @@ public class DoublyLinkedList {
         }
     }
 
-    public void delete_odd_positions() {
+    public void delete_odd_positions() {//o(n)
         addFirst(-1);
         delete_even_positions();
         deleteFront();
     }
 
     //return element of position
-    public Node_DLL nth(int pos) {
+    public Node_DLL nth(int pos) {//o(n)
         int index = 0;
         for (Node_DLL curr = head; curr != null; curr = curr.next, ++index) {
             if (index == pos) {
@@ -157,7 +157,7 @@ public class DoublyLinkedList {
     }
 
     //  12321 is palindrome  , 1231 is not palindrome
-    public boolean is_palindrome() {
+    public boolean is_palindrome() {//o(n)
         if (length <= 1) {
             return true;
         }
@@ -169,7 +169,7 @@ public class DoublyLinkedList {
         return true;
     }
 
-    public boolean is_palindrome2() {
+    public boolean is_palindrome2() {//o(n)
         if (length <= 1) {
             return true;
         }
@@ -186,7 +186,7 @@ public class DoublyLinkedList {
         return true;
     }
 
-    public void deleteNode(Node_DLL nodeToDelete) {
+    public void deleteNode(Node_DLL nodeToDelete) {//o(1)
         //if list is empty or nodeToDelete is null
         if (head == null || nodeToDelete == null) {
             return;
@@ -212,13 +212,13 @@ public class DoublyLinkedList {
         nodeToDelete.next = null;
     }
 
-    public void before_middle_after(Node_DLL before, Node_DLL middle) {
+    public void before_middle_after(Node_DLL before, Node_DLL middle) {//o(1)
         Node_DLL after = before.next;
         link(before, middle);
         link(middle, after);
     }
 
-    public void link(Node_DLL first, Node_DLL second) {
+    public void link(Node_DLL first, Node_DLL second) {//o(1)
         if (first != null) {
             first.next = second;
         }
@@ -228,7 +228,7 @@ public class DoublyLinkedList {
     }
 
     //print linkedlist elements 
-    public void display() {
+    public void display() {//o(n)
         System.out.print("Elements :");
         for (Node_DLL curr = head; curr != null; curr = curr.next) {
             System.out.print(curr.value + " ");

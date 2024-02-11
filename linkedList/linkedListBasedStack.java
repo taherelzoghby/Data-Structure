@@ -2,7 +2,7 @@ package linkedList;
 
 public class linkedListBasedStack<T> {
 
-    private node head;
+    private NodeLinked head;
     private int size = 0;
 
     public linkedListBasedStack() {
@@ -18,7 +18,7 @@ public class linkedListBasedStack<T> {
     }
 
     public void addElement(T value) {
-        node item = new node(value);
+        NodeLinked item = new NodeLinked(value);
         item.next = head;
         head = item;
         size++;
@@ -43,14 +43,14 @@ public class linkedListBasedStack<T> {
     }
 
     public void clear() {
-        for (node current = head; current != null; current = current.next,size--) {
+        for (NodeLinked current = head; current != null; current = current.next,size--) {
           head = head.next;
         }
     }
 
     public void display() {
         System.out.println("\tValue\tNext");
-        for (node current = head; current != null; current = current.next) {
+        for (NodeLinked current = head; current != null; current = current.next) {
             System.out.println("\t" + current.value + "\t" + current.next);
         }
         System.out.println("Size of element in LinkedlistStack : " + sizeLinkedListStack());

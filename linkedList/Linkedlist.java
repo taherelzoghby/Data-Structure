@@ -2,21 +2,21 @@ package linkedList;
 
 public class Linkedlist<T> {
 
-    node head;
-    node tail;
+    NodeLinked head;
+    NodeLinked tail;
     int length;
 
-    public Linkedlist() {
+    public Linkedlist() {//o(1)
         this.head = null;
         this.tail = null;
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty() {//o(1)
         return head == null;
     }
 
-    public void addFirst(T value) {
-        node newNode = new node(value);
+    public void addFirst(T value) {//o(1)
+        NodeLinked newNode = new NodeLinked(value);
         if (isEmpty()) {
             head = tail = newNode;
         } else {
@@ -26,8 +26,8 @@ public class Linkedlist<T> {
         length++;
     }
 
-    public void addLast(T value) {
-        node newNode = new node(value);
+    public void addLast(T value) {//o(1)
+        NodeLinked newNode = new NodeLinked(value);
         if (isEmpty()) {
             head = tail = newNode;
         } else {
@@ -37,20 +37,20 @@ public class Linkedlist<T> {
         length++;
     }
 
-    public void insert_bet_twoNode(node nod, int value) {
-        node item = new node(value);
+    public void insert_bet_twoNode(NodeLinked nod, int value) {//o(1)
+        NodeLinked item = new NodeLinked(value);
         item.next = nod.next;
         nod.next = item;
         length++;
     }
 
-    public void insert_sorted(T value) {
+    public void insert_sorted(T value) {//o(n)
         if (isEmpty() || (int) value <= (int) head.value) {
             addFirst(value);
         } else if ((int) value >= (int) tail.value) {
             addLast(value);
         } else {
-            for (node curr = head, prev = null; curr != null; prev = curr, curr = curr.next) {
+            for (NodeLinked curr = head, prev = null; curr != null; prev = curr, curr = curr.next) {
                 if ((int) value <= (int) curr.value) {
                     insert_bet_twoNode(prev, (int) value);
                     break;
@@ -59,11 +59,11 @@ public class Linkedlist<T> {
         }
     }
 
-    public void removeFirst() {
+    public void removeFirst() {//o(1)
         if (isEmpty()) {
             System.out.println("linkedlist is empty!");
         } else {
-            
+
             head = head.next;
             if (length == 1) {
                 tail = head;
@@ -72,14 +72,14 @@ public class Linkedlist<T> {
         }
     }
 
-    public void removeLast() {
+    public void removeLast() {//o(1)
         if (isEmpty()) {
             System.out.println("linkedlist is empty!");
         } else {
             if (length == 1) {
                 removeFirst();
             } else {
-                node prev = get_nth(length - 1);
+                NodeLinked prev = get_nth(length - 1);
                 tail = prev;
                 tail.next = null;
             }
@@ -88,15 +88,15 @@ public class Linkedlist<T> {
     }
 
     //delete by position
-    public void remove_nth(int pos) {
+    public void remove_nth(int pos) {//o(n)
         if (isEmpty()) {
             System.out.println("linked list is empty");
         } else {
             if (pos == 1) {
                 removeFirst();
             } else {
-                node before_nth = get_nth(pos - 1);
-                node nth = before_nth.next;
+                NodeLinked before_nth = get_nth(pos - 1);
+                NodeLinked nth = before_nth.next;
                 boolean isTail = (nth == tail);
                 before_nth.next = nth.next;
                 if (isTail) {
@@ -108,7 +108,7 @@ public class Linkedlist<T> {
     }
 
     //delete by value
-    public void delete_node_with_key(T value) {
+    public void delete_node_with_key(T value) {//o(n)
         if (isEmpty()) {
             System.out.println("linkedlist is empty!");
         } else {
@@ -117,8 +117,8 @@ public class Linkedlist<T> {
             } else if (value == tail.value) {
                 removeLast();
             } else {
-                node prev = head;
-                node curr = head.next;
+                NodeLinked prev = head;
+                NodeLinked curr = head.next;
                 for (; curr.next != null; curr = curr.next) {
                     if (value == curr.value) {
                         break;
@@ -131,11 +131,13 @@ public class Linkedlist<T> {
         }
     }
 
-    public void reverse() {
+    public void reverse() {//o(n)
         if (size() <= 1) {
             return;
         }
-        node prev = null, curr = head, nextt = curr.next;
+        NodeLinked prev = null;
+        NodeLinked curr = head;
+        NodeLinked nextt = curr.next;
         while (nextt != null) {
             nextt = curr.next;
             curr.next = prev;
@@ -145,8 +147,9 @@ public class Linkedlist<T> {
         head = prev;
     }
 
-    public void delete_even_positions() {
-        node prev = null, curr = head;
+    public void delete_even_positions() {        //o(n)
+        NodeLinked prev = null;
+        NodeLinked curr = head;
         int index = 1;
         while (curr != null) {
             if (index % 2 == 0) {
@@ -161,8 +164,8 @@ public class Linkedlist<T> {
 
     //1 2 3 4  -  1 2 3 4 5
     //2 1 4 3  -  2 1 4 3 5
-    public void swap_pairs() {
-        for (node curr = head; curr != null; curr = curr.next) {
+    public void swap_pairs() {//o(n)
+        for (NodeLinked curr = head; curr != null; curr = curr.next) {
             if (curr.next != null) {
                 Object v3 = curr.value;
                 curr.value = curr.next.value;
@@ -172,13 +175,13 @@ public class Linkedlist<T> {
         }
     }
 
-    public int size() {
+    public int size() {//o(1)
         return this.length;
     }
 
-    public node get_nth(int n) {
+    public NodeLinked get_nth(int n) {//o(n)
         int indx = 1;
-        for (node curr = head; curr != null; curr = curr.next, indx++) {
+        for (NodeLinked curr = head; curr != null; curr = curr.next, indx++) {
             if (indx == n) {
                 return curr;
             }
@@ -186,7 +189,7 @@ public class Linkedlist<T> {
         return null;
     }
 
-    public node get_nth_back(int n) {
+    public NodeLinked get_nth_back(int n) {//o(n)
         // 1 2 3 4 5 6
         if (size() < n) {
             return null;
@@ -194,9 +197,9 @@ public class Linkedlist<T> {
         return get_nth(size() - n + 1);
     }
 
-    public int search(T value) {
+    public int search(T value) {//o(n)
         int indx = 0;
-        for (node curr = head; curr != null; curr = curr.next, indx++) {
+        for (NodeLinked curr = head; curr != null; curr = curr.next, indx++) {
             if (curr.value == value) {
                 return indx;
             }
@@ -204,10 +207,10 @@ public class Linkedlist<T> {
         return -1;
     }
 
-    public int search_improve(T value) {
+    public int search_improve(T value) {//o(n)
         int indx = 0;
-        node prev = null;
-        for (node curr = head; curr != null; curr = curr.next, indx++) {
+        NodeLinked prev = null;
+        for (NodeLinked curr = head; curr != null; curr = curr.next, indx++) {
             if (curr.value == value) {
                 if (prev == null) {
                     return indx;
@@ -220,15 +223,15 @@ public class Linkedlist<T> {
         return -1;
     }
 
-    public void swap(Object v1, Object v2) {
+    public void swap(Object v1, Object v2) {//o(1)
         Object v3 = v1;
         v1 = v2;
         v2 = v3;
     }
 
-    public void print() {
+    public void print() {//o(n)
         System.out.print("linkedlist : ");
-        node curr = head;
+        NodeLinked curr = head;
         while (curr != null) {
             System.out.print(curr.value + " ");
             curr = curr.next;
@@ -236,16 +239,16 @@ public class Linkedlist<T> {
         System.out.println("");
     }
 
-    public void print_1() {
-        for (node curr = head; curr != null; curr = curr.next) {
+    public void print_1() {//o(n)
+        for (NodeLinked curr = head; curr != null; curr = curr.next) {
             System.out.print(curr.value + " ");
         }
         System.out.println("");
     }
 
-    public void print_2() {
+    public void print_2() {//o(n)
         System.out.println("linkedlist : ");
-        for (node curr = head; curr != null; curr = curr.next) {
+        for (NodeLinked curr = head; curr != null; curr = curr.next) {
             if (curr == null) {
                 System.out.println("null");
                 return;
@@ -268,16 +271,16 @@ public class Linkedlist<T> {
         System.out.println("");
     }
 
-    public String debug_toString() {
+    public String debug_toString() {//o(n)
         StringBuilder str = new StringBuilder();
         str.append("linkedlist : ");
-        for (node curr = head; curr != null; curr = curr.next) {
+        for (NodeLinked curr = head; curr != null; curr = curr.next) {
             str.append(curr.value).append(" ");
         }
         return str.toString();
     }
 
-    public void debug_verify_data_integrity() {
+    public void debug_verify_data_integrity() {//o(n)
         if (length == 0) {
             assert (head == null);
             assert (tail == null);
@@ -292,7 +295,7 @@ public class Linkedlist<T> {
             assert (tail.next != null);
         }
         int len = 0;
-        for (node curr = head; curr != null; curr = curr.next, len++) {
+        for (NodeLinked curr = head; curr != null; curr = curr.next, len++) {
             assert (len < 10000);
         }
         assert (len == length);
@@ -300,10 +303,10 @@ public class Linkedlist<T> {
 
     }
 
-    public boolean isSame(Linkedlist list1) {
+    public boolean isSame(Linkedlist list1) {//o(n)
         if (size() == list1.size()) {
-            node curr1 = list1.head;
-            for (node curr = head; curr != null; curr = curr.next) {
+            NodeLinked curr1 = list1.head;
+            for (NodeLinked curr = head; curr != null; curr = curr.next) {
                 if (curr.value != curr1.value) {
                     return false;
                 }
@@ -314,9 +317,9 @@ public class Linkedlist<T> {
         return false;
     }
 
-    public node getPrevious(node cur) {
-        node prev = null;
-        for (node curr = head; curr != null; curr = curr.next) {
+    public NodeLinked getPrevious(NodeLinked cur) {//o(n)
+        NodeLinked prev = null;
+        for (NodeLinked curr = head; curr != null; curr = curr.next) {
             if (curr.next.value == cur.value || curr.next == null) {
                 prev = curr;
                 break;
@@ -325,41 +328,42 @@ public class Linkedlist<T> {
         return prev;
     }
 
-    public void Swap_head_and_tail() {
+    public void Swap_head_and_tail() {//o(n)
         if (isEmpty() || head.next == null) {
             return;
         }
-        node pTail = getPrevious(tail);
+        NodeLinked pTail = getPrevious(tail);
         tail.next = head.next;
         pTail.next = head;
         head.next = null;
         //swap between tail and head
-        node temp = tail;
+        NodeLinked temp = tail;
         tail = head;
         head = temp;
 
     }
 
-    public void destructorLinked() {
+    public void destructorLinked() {//o(n)
 
         while (head != null) {
-            node curr = head.next;
+            NodeLinked curr = head.next;
             head = null;
             head = curr;
         }
     }
 
-    public void leftRotate(int k) {
-        if(size()<=1||k==size())
+    public void leftRotate(int k) {//o(n)
+        if (size() <= 1 || k == size()) {
             return;
-        node nth=get_nth(k);
+        }
+        NodeLinked nth = get_nth(k);
         //create cycle
-        tail.next=head;
+        tail.next = head;
         //reset tail
-        tail=nth;
+        tail = nth;
         //reset head;
-        head=nth.next;
+        head = nth.next;
         //disconnect cycle
-        tail.next=null;
+        tail.next = null;
     }
 }
