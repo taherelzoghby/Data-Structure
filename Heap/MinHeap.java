@@ -97,6 +97,14 @@ public class MinHeap {
         int p = (node - 1) / 2;
         return node == 0 ? -1 : p;
     }
+    public void print_less_than(int val,int parentPos){
+        if(parentPos==-1||array[parentPos]>=val){
+            return;
+        }
+        System.out.print(array[parentPos]+" ");
+        print_less_than(val,left(parentPos));
+        print_less_than(val,right(parentPos));
+    }
 
     public void print() {//o(n)
         System.out.print("Min Heap elements : ");

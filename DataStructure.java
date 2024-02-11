@@ -1,11 +1,7 @@
 
+import Heap.MaxHeap;
 import Heap.MinHeap;
-import Vector.Vector;
-import tree.BST;
-import tree.BinarySearchTree;
-import tree.BinaryTree;
-import tree.Node;
-import tree.testTree;
+import java.util.Vector;
 
 public class DataStructure {
 
@@ -49,165 +45,6 @@ public class DataStructure {
             arr[maxInd] = arr[i];
             arr[i] = temp;
         }
-    }
-
-    static void print(int[] arr) {
-        int size = arr.length;
-        for (int i = 0; i < size; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println("");
-    }
-
-    static int count = 0;
-
-    static int linearSum(int[] data, int n) {
-        if (n < 0) {
-            return 0;
-        } else {
-            return linearSum(data, n - 1) + data[n];
-        }
-    }
-
-    static public boolean isPowerOfTwo(int n) {
-        if ((n % 2 != 0 && n != 1) || n == 0) {
-            return false;
-        }
-        while (n % 2 == 0) {
-            n /= 2;
-        }
-        return (n == 0 || n == 1);
-    }
-
-    static void funSpace(int n) {
-        for (int i = 0; i < n; i++) {
-            System.out.print(" ");
-        }
-    }
-
-    static void funStar(int n) {
-        for (int i = n; i >= 1; i--) {
-            System.out.print("* ");
-        }
-    }
-
-    static void star(int n) {
-        for (int i = n; i >= 1; i--) {
-            funSpace(n - i);
-            funStar(i);
-            System.out.println("");
-        }
-        for (int i = n - 1; i >= 1; i--) {
-            funSpace(i - 1);
-            funStar(n - i + 1);
-            System.out.println("");
-        }
-    }
-
-    static void draw(int n) {
-        if (n < 0) {
-            return;
-        }
-        draw(n - 1);
-        System.out.println("---- " + n);
-        if (n < 2) {
-            System.out.println("-\n--\n-\n---\n-\n--\n-");
-        }
-    }
-
-    public static void drawRular(int inches, int majorLength) {
-        drawLine(majorLength, 0);
-        for (int j = 1; j <= inches; j++) {
-            drawInterval(majorLength - 1);
-            drawLine(majorLength, j);
-        }
-    }
-
-    public static void drawInterval(int centeralLength) {
-        if (centeralLength >= 1) {
-            drawInterval(centeralLength - 1);
-            drawLine(centeralLength);
-            drawInterval(centeralLength - 1);
-        }
-    }
-
-    public static void drawLine(int tickLength, int tickLabel) {
-        for (int j = 0; j < tickLength; j++) {
-            System.out.println("-");
-        }
-        if (tickLabel >= 0) {
-            System.out.println(" " + tickLabel);
-        }
-        System.out.println("\n");
-
-    }
-
-    public static void drawLine(int tickLength) {
-        drawLine(tickLength, -1);
-    }
-
-    public static void reverseArr(int[] array, int low, int high) {
-        if (low < high) {
-            int temp = array[low];
-            array[low] = array[high];
-            array[high] = temp;
-            reverseArr(array, low + 1, high - 1);
-        }
-    }
-
-    public static double power(int x, int n) {
-        if (n == 0) {
-            return 1;
-        } else {
-            return x * power(x, n - 1);
-        }
-    }
-
-    public static int sumSubArray(int[] array, int low, int high) {
-        if (low > high) {//no elements
-            return 0;
-        } else if (low == high) {//one element
-            return array[low];
-        } else {
-            int mid = (low + high) / 2;
-            return sumSubArray(array, low, mid) + sumSubArray(array, mid + 1, high);
-        }
-    }
-
-    static void towerOfHanoi(int n, char from_rod, char to_rod, char helper_rod) {
-        if (n == 0) {
-            return;
-        }
-        towerOfHanoi(n - 1, from_rod, helper_rod, to_rod);
-        System.out.println("Take disk " + n + " from rod " + from_rod + " to rod " + to_rod);
-        towerOfHanoi(n - 1, helper_rod, to_rod, from_rod);
-    }
-
-    public static void print_inOrder(Node node) {
-        if (node == null) {
-            return;
-        }
-        print_inOrder(node.left);
-        System.out.print(node.data + " ");
-        print_inOrder(node.right);
-    }
-
-    public static void print_postOrder(Node node) {
-        if (node == null) {
-            return;
-        }
-        print_postOrder(node.left);
-        print_postOrder(node.right);
-        System.out.print(node.data + " ");
-    }
-
-    public static void print_preOrder(Node node) {
-        if (node == null) {
-            return;
-        }
-        System.out.print(node.data + " ");
-        print_preOrder(node.left);
-        print_preOrder(node.right);
     }
 
     static int first = 0, second = 1;
@@ -265,12 +102,13 @@ public class DataStructure {
         return false;
     }
 
-    static void bubbleSort(int[] arr) {
+    static void bubbleSort(int[] arr) {//o(n2)
         int size = arr.length;
         boolean flag = true;
         for (int i = 0; i < size - 1; i++) {
             for (int j = 0; j < size - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
+                    //swap 
                     int temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
@@ -283,7 +121,8 @@ public class DataStructure {
         }
     }
 
-    static void selectionSort(int[] arr) {
+    //selection sort
+    static void selectionSort(int[] arr) {//o(n2)
         int size = arr.length, minInd = 0;
         for (int i = 0; i < size - 1; i++) {
             minInd = i;
@@ -298,53 +137,57 @@ public class DataStructure {
         }
     }
 
-    public static int sum(int n1, int n2) {
-        return n1 + n2;
-    }
+    public static void main(String[] args) throws InterruptedException {
+        int[] arr = {20, 10, 4, 5, 3};
+        selectionSort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(" " + arr[i]);
+        }
+        System.out.println("");
+        //        NodeLinked node1 = new NodeLinked(10);
+        //        NodeLinked node2 = new NodeLinked(20);
+        //        NodeLinked node3 = new NodeLinked(30);
+        //        NodeLinked node4 = new NodeLinked(40);
+        //        NodeLinked node5 = new NodeLinked(50);
+        //        node1.next = node2;
+        //        node2.next = node3;
+        //        node3.next = node4;
+        //        node4.next = node5;
+        //        node5.next=null;
+        //        NodeLinked.print(node1);
+        //        System.out.println("node4 : "+node1.next.next.next.next.value);
+        //        System.out.println("node4 : "+node2.next.next.next.value);
+        //        System.out.println("node4 : "+node3.next.next.value);
+        //        System.out.println("node4 : "+node4.next.value);
+        //        NodeLinked.printReverse(node1);
+        //        System.out.println("");
 
-    public static int subtract(int n1, int n2) {
-        return n1 - n2;
-    }
-
-    public static int multiple(int n1, int n2) {
-        return n1 * n2;
-    }
-
-    public static void main(String[] args) {
-//        int num1 = 10;
-//        int num2 = 20;
-//        // Execute methods in parallel
-//        Thread thread1 = new Thread() {
-//            public void run() {
-//                System.out.println("thread 1 : " + sum(num1, num2));
-//            }
-//        };
-//        Thread thread2 = new Thread() {
-//            public void run() {
-//                System.out.println("thread 2 : " + subtract(num1, num2));
-//            }
-//        };
-//        Thread thread3 = new Thread() {
-//            public void run() {
-//                System.out.println("thread 3 : " + multiple(num1, num2));
-//            }
-//        };
-//
-//        thread1.start();
-//        thread2.start();
-//        thread3.start();
-//
-//        System.out.println("");
-//        // Execute methods sequentially
-//        System.out.println(sum(num1, num2));
-//        System.out.println(subtract(num1, num2));
-//        System.out.println(multiple(num1, num2));
-///heap
-//        MinHeap heap = new MinHeap();
+        //
+        //        System.out.println("");
+        //        // Execute methods sequentially
+        //        System.out.println(sum(num1, num2));
+        //        System.out.println(subtract(num1, num2));
+        //        System.out.println(multiple(num1, num2));
+        // heap
+        /////vector
+        Vector<Integer> vector = new Vector(5);
+        vector.add(50);
+        vector.add(17);
+        vector.add(4);
+        vector.add(10);
+        vector.add(8);
+        vector.add(9);
+        vector.add(15);
+        vector.add(19);
+        vector.add(7);
+        vector.add(6);
+        vector.add(5);
+        System.out.println(vector);
+        MinHeap heap = new MinHeap(vector);
 //        heap.push(2);
 //        heap.push(6);
 //        heap.push(8);
-//        heap.push(14);
+        heap.push(14);
 //        heap.push(7);
 //        heap.push(10);
 //        heap.push(19);
@@ -354,32 +197,29 @@ public class DataStructure {
 //        heap.push(12);
 //        heap.push(22);
 //        heap.push(17);
-//        heap.push(5);
-//        heap.push(4);
 //        heap.print();
-//        System.out.println(heap.top());
-/////vector
-        Vector<Integer> vector = new Vector(5);
-        vector.pushBack(2);
-        vector.pushBack(4);
-        vector.pushBack(6);
-        System.out.println("");
-        vector.insert(44, 0);
-        vector.insert(11, 1);
-        vector.insert(32, 2);
-        vector.insert(23, 3);
-        vector.insert(41, 4);
-        vector.print();
-        System.out.println("");
-        System.out.println(vector.lengthOfNums());
-        //////////////////////////////////////////////////////////////////////
-        vector.insert(20, 1);
-        vector.print();
-        System.out.println("");
-        System.out.println(vector.lengthOfNums());
-        System.out.println(vector.find_transposition(41));
-        vector.print();
-        System.out.println("");
+//        System.out.println(heap.length());
+//        heap.popTop();
+//        heap.popTop();
+//        heap.popTop();
+//        heap.popTop();
+//        heap.popTop();
+//        heap.popTop();
+//        heap.popTop();
+//        heap.popTop();
+        heap.popTop();
+        heap.print();
+        System.out.println(heap.length());
+        heap.print_less_than(10,0);
+
+//        //////////////////////////////////////////////////////////////////////
+//        vector.insert(20, 1);
+//        vector.print();
+//        System.out.println("");
+//        System.out.println(vector.lengthOfNums());
+//        System.out.println(vector.find_transposition(41));
+//        vector.print();
+//        System.out.println("");
 //        BinarySearchTree tree = new BinarySearchTree(60);
 //        tree.insert(25);
 //        tree.insert(75);
