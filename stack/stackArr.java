@@ -12,33 +12,33 @@ public class stackArr<T> {
     private int top;
     private int nElement;
 
-    public stackArr(int size) {
+    public stackArr(int size) {//o(1)
         this.size = size;
         this.stacArray = new Object[this.size];
         this.top = -1;
     }
 
-    public int numberOfElements() {
+    public int numberOfElements() {//o(1)
         return this.nElement;
     }
 
-    public int Size() {
+    public int Size() {//o(1)
         return this.size;
     }
 
-    public boolean isFull() {
+    public boolean isFull() {//o(1)
         return top == size - 1;
     }
 
-    public T peek() {
+    public T peek() {//o(1)
         return (T) stacArray[top];
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty() {//o(1)
         return top == -1;
     }
 
-    public void Push(Object value) throws invalidValue, stackFull {
+    public void Push(Object value) throws invalidValue, stackFull {//o(1)
         if (value == null) {
             throw new invalidValue("invalid value..!");
         } else if (isFull() == true) {
@@ -50,7 +50,7 @@ public class stackArr<T> {
 
     }
 
-    public void push_bottom(Object value) throws emptyStack, invalidValue, stackFull{
+    public void push_bottom(Object value) throws emptyStack, invalidValue, stackFull{//o(1)
         if(isEmpty()){
             Push(value);
         }else{
@@ -59,14 +59,14 @@ public class stackArr<T> {
             Push(cur);
         }
     }
-    public void reverse() throws emptyStack, invalidValue, stackFull{
+    public void reverse() throws emptyStack, invalidValue, stackFull{//o(1)
         if(isEmpty())
             return;
         Object cur= pop();
         reverse();
         push_bottom(cur);
     }
-    public T pop() throws emptyStack {
+    public T pop() throws emptyStack {//o(1)
         if (isEmpty()) {
             throw new emptyStack("stack is empty..!");
         } else {
@@ -74,12 +74,12 @@ public class stackArr<T> {
             return (T) stacArray[top--];
         }
     }
-    public void clear(){
+    public void clear(){//o(1)
         top=-1;
     }
 
     @Override
-    public String toString() {
+    public String toString() {//o(n)
         StringBuilder str = new StringBuilder();
         str.append("stack ").append(" elements  : ").append("\n");
         for (int i = 0; i <= top; i++) {

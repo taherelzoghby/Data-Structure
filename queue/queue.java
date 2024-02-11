@@ -11,24 +11,24 @@ public class queue<T> {
     private int add_elements=0;
     Object[] arr;
 
-    public queue(int size) {
+    public queue(int size) {//o(1)
         this.size = size;
         arr = new Object[this.size];
     }
-    public int count(){
+    public int count(){//o(1)
         return this.add_elements;
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty() {//o(1)
         return add_elements == 0;
     }
 
-    public boolean isFull() {
+    public boolean isFull() {//o(1)
         return add_elements == size;
     }
 
     //add element
-    public void enqueue(Object element) {
+    public void enqueue(Object element) {//o(1)
         if (isFull()) {
             System.out.println("Queue is full,Can't add number in queue!");
             return;
@@ -39,7 +39,7 @@ public class queue<T> {
     }
 
     //remove element
-    public Object dequeue() {
+    public Object dequeue() {//o(1)
         if (isEmpty()) {
             System.out.println("Queue is empty,Can't remove number from queue!");
         }
@@ -49,16 +49,16 @@ public class queue<T> {
         return value;
     }
 
-    public Object frontQueue() {
+    public Object frontQueue() {//o(1)
         return arr[front];
     }
 
-    public Object rearQueue() {
+    public Object rearQueue() {//o(1)
         return arr[rear];
     }
 
     //to move an index step forward
-    public int next(int pos) {
+    public int next(int pos) {//o(1)
         ++pos;
         if (pos == size) {
             pos = 0;
@@ -67,7 +67,7 @@ public class queue<T> {
     }
 
     //display queue
-    public void display() {
+    public void display() {//o(n)
         if (isFull()) {
             System.out.println("Queue is Full");
         } else if (isEmpty()) {
@@ -81,7 +81,7 @@ public class queue<T> {
     }
 
     //clear queue
-    public void clear() {
+    public void clear() {//o(n)
         while(!isEmpty()){
             dequeue();
         }

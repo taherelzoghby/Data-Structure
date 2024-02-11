@@ -5,21 +5,22 @@ public class stackQueue {
     queue q;
     int add_elements;
 
-    public stackQueue(int size) {
+    public stackQueue(int size) {//o(1)
         q = new queue(size);
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty() {//o(1)
         return q.isEmpty();
     }
-    public Object peek(){
+
+    public Object peek() {//o(1)
         return q.frontQueue();
     }
 
-    public void pushAtFront(Object element) {
-        int siz=add_elements;
+    public void pushAtFront(Object element) {//o(n)
+        int siz = add_elements;
         q.enqueue(element);
-        while(siz!=0){
+        while (siz != 0) {
             q.enqueue(q.dequeue());
             siz--;
         }
@@ -27,8 +28,7 @@ public class stackQueue {
         System.out.println("");
     }
 
-
-    public Object pop() {
+    public Object pop() {//o(1)
         return q.dequeue();
     }
 }

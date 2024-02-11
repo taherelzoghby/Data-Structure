@@ -12,22 +12,22 @@ public class queue_2_stack<T> {
     stackArr s1;
     stackArr s2;
 
-    public queue_2_stack(int size) {
+    public queue_2_stack(int size) {//o(1)
         this.size = size;
         s1 = new stackArr(size);
         s2 = new stackArr(size);
     }
 
-    public boolean isEmpty() {
+    public boolean isEmpty() {//o(1)
         return add_elements == 0;
     }
 
-    public boolean isFull() {
+    public boolean isFull() {//o(1)
         return add_elements == this.size;
     }
 
     //move elements from stack1 to stack2
-    private void move(stackArr from, stackArr to) throws emptyStack, invalidValue, stackFull {
+    private void move(stackArr from, stackArr to) throws emptyStack, invalidValue, stackFull {//o(n)
         while (!from.isEmpty()) {
             to.Push(from.pop());
         }
