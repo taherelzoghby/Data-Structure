@@ -6,7 +6,7 @@ public class Vector<T> implements VectorInterface<T> {
     private int size;
     private int capacity;
 
-    public Vector(int size) {
+    public Vector(int size) {//o(1)
         if (size < 0) {
             size = 1;
         }
@@ -15,7 +15,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public void insert(int value, int index) {
+    public void insert(int value, int index) {//o(n)
         if (size == capacity) {
             expand_capacity();
         }
@@ -27,22 +27,22 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public int lengthOfNums() {
+    public int lengthOfNums() {//o(1)
         return this.size;
     }
 
     @Override
-    public Object get(int index) {
+    public Object get(int index) {//o(1)
         return this.array[index];
     }
 
     @Override
-    public void set(int index, Object value) {
+    public void set(int index, Object value) {//o(1)
         this.array[index] = value;
     }
 
     @Override
-    public int find(Object value) {
+    public int find(Object value) {//o(n)
         for (int index = 0; index < this.size; index++) {
             if (value == this.array[index]) {
                 return index;
@@ -52,7 +52,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public void pushBack(Object value) {
+    public void pushBack(Object value) {//o(1)
         if (size == capacity) {
             expand_capacity();
         }
@@ -60,7 +60,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public void expand_capacity() {
+    public void expand_capacity() {//o(n)
         capacity *= 2;
         System.out.println("Expanded capacity to : " + this.capacity);
         Object[] arr2 = new Object[this.capacity];
@@ -70,7 +70,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public Object[] swap(Object[] arr1, Object[] arr2) {
+    public Object[] swap(Object[] arr1, Object[] arr2) {//o(1)
         Object[] temp = arr1;
         arr1 = arr2;
         arr2 = temp;
@@ -83,18 +83,18 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public Object getFront() {
+    public Object getFront() {//o(1)
         return this.array[0];
 
     }
 
     @Override
-    public Object getBack() {
+    public Object getBack() {//o(1)
         return this.array[this.size - 1];
     }
 
     @Override
-    public void print() {
+    public void print() {//o(n)
         System.out.println("");
         for (Object item : this.array) {
             if (item != null) {
@@ -104,7 +104,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public void right_rotate() {
+    public void right_rotate() {//o(n)
         for (int i = this.array.length - 1; i > 0; i--) {
             Object temp = array[i];
             array[i] = array[i - 1];
@@ -113,7 +113,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public void left_rotate() {
+    public void left_rotate() {//o(n)
         for (int i = 0; i < this.array.length - 1; i++) {
             Object temp = array[i];
             array[i] = array[i + 1];
@@ -122,7 +122,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public void right_rotate(int times) {
+    public void right_rotate(int times) {//o(n)
         while (times != 0) {
             right_rotate();
             --times;
@@ -135,7 +135,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public Object pop(Object idx) {
+    public Object pop(Object idx) {//o(n)
         int i = find(idx);
         for (int j = i + 1; j < size; ++j) {
             array[j - 1] = array[j];
@@ -146,7 +146,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public void right_rotate1() {
+    public void right_rotate1() {//o(n)
         Object lastElement = array[array.length - 1];
         for (int p = array.length - 2; p >= 0; --p) {
             array[p + 1] = array[p];
@@ -155,7 +155,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public void left_rotate1() {
+    public void left_rotate1() {//o(n)
         Object firstElement = array[0];
         for (int p = 1; p < array.length; ++p) {
             array[p - 1] = array[p];
@@ -164,7 +164,7 @@ public class Vector<T> implements VectorInterface<T> {
     }
 
     @Override
-    public int find_transposition(Object value) {
+    public int find_transposition(Object value) {//o(n)
         if (value == array[0]) {
             return 0;
         } else {
