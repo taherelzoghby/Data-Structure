@@ -8,17 +8,17 @@ public class BST {
     public BST right;
     public int data;
 
-    public BST(int data, BST left, BST right) {
+    public BST(int data, BST left, BST right) {//o(1)
         this.data = data;
         this.left = left;
         this.right = right;
     }
 
-    public BST(int data) {
+    public BST(int data) {//o(1)
         this(data, null, null);
     }
 
-    public void insert(int value) {
+    public void insert(int value) {//o(n)
 
         if (value > data) {
             if (right == null) {
@@ -36,7 +36,7 @@ public class BST {
         }
     }
 
-    public int min() {
+    public int min() {//o(n)
         if (left != null) {
             left.min();
         } else {
@@ -45,13 +45,13 @@ public class BST {
         return left.min();
     }
 
-    public int kth_smallest(int k) {
+    public int kth_smallest(int k) {//o(1)
 
         return 0;
 
     }
 
-    public boolean search(int value) {
+    public boolean search(int value) {//o(n)
         boolean result = value == data;
         if (value > data && !result && right != null) {
             result = right.search(value);
@@ -62,7 +62,7 @@ public class BST {
         return result;
     }
 
-    public boolean search1(int value) {
+    public boolean search1(int value) {//o(n)
         if (value == data) {
             return true;
         }
@@ -72,7 +72,7 @@ public class BST {
         return right != null && right.search(value);
     }
 
-    public boolean search2(int value) {
+    public boolean search2(int value) {//o(n)
         BST node = this;
         while (node != null) {
             if (node.data == value) {
@@ -88,7 +88,7 @@ public class BST {
         return false;
     }
 
-    public void search_and_getPath(int value, Vector<Integer> path) {
+    public void search_and_getPath(int value, Vector<Integer> path) {//o(n)
         BST node = this;
         while (node != null) {
             path.add(node.data);
@@ -105,7 +105,7 @@ public class BST {
         }
     }
 
-    public int lowestCommonAncestor(int x, int y) {
+    public int lowestCommonAncestor(int x, int y) {//o(n)
         if (x < data && y < data) {
             return left.lowestCommonAncestor(x, y);
         }
@@ -117,7 +117,7 @@ public class BST {
         return data;
     }
 
-    public boolean isBinarySearchTree() {
+    public boolean isBinarySearchTree() {//o(n)
         boolean result = true;
         if (left != null && result) {
             if (data <= left.data) {
@@ -134,7 +134,7 @@ public class BST {
         return result;
     }
 
-    public boolean isBinarySearchTreeIterative() {
+    public boolean isBinarySearchTreeIterative() {//o(n)
         Vector<Integer> values = new Vector();
         get_inorder(values);
         for (int i = 1; i < values.size(); i++) {
@@ -145,7 +145,7 @@ public class BST {
         return true;
     }
 
-    public boolean isBinarySearchTree2(int minValue, int maxValue) {
+    public boolean isBinarySearchTree2(int minValue, int maxValue) {//o(n)
         if (data < minValue || data > maxValue) {
             return false;
         }
@@ -160,7 +160,7 @@ public class BST {
         return true;
     }
 
-    public void get_inorder(Vector values) {
+    public void get_inorder(Vector values) {//o(n)
         if (left != null) {
             left.get_inorder(values);
         }
@@ -170,7 +170,7 @@ public class BST {
         }
     }
 
-    public void get_inorder() {
+    public void get_inorder() {//o(n)
         if (left != null) {
             left.get_inorder();
         }
@@ -180,7 +180,7 @@ public class BST {
         }
     }
 
-    public BST get_min() {
+    public BST get_min() {//o(n)
         BST current = this;
         while (current != null && current.left != null) {
             current = current.left;
@@ -188,7 +188,7 @@ public class BST {
         return current;
     }
 
-    public boolean find_path(int target, Vector<BST> path) {
+    public boolean find_path(int target, Vector<BST> path) {//o(n)
         path.add(this);
         if (data == target) {
             return true;
@@ -199,7 +199,7 @@ public class BST {
         return left != null && left.find_path(target, path);
     }
 
-    public BST get_next(Vector<BST> ancestors) {
+    public BST get_next(Vector<BST> ancestors) {//o(1)
         if (ancestors.isEmpty()) {
             return null;
         }
@@ -208,7 +208,7 @@ public class BST {
         return node;
     }
 
-    public int successor(int target) {
+    public int successor(int target) {//o(n)
         Vector<BST> path = new Vector<>();
         find_path(target, path);
         BST node = get_next(path);
@@ -226,7 +226,7 @@ public class BST {
         return -1;
     }
 
-    public int predecessor(int target) {
+    public int predecessor(int target) {//o(n)
         Vector<BST> path = new Vector<>();
         find_path(target, path);
         BST node = get_next(path);
@@ -244,7 +244,7 @@ public class BST {
         return -1;
     }
 
-    public int get_min(BST node) {
+    public int get_min(BST node) {//o(n)
         BST current = node;
         while (current != null && current.left != null) {
             current = current.left;
@@ -252,7 +252,7 @@ public class BST {
         return current.data;
     }
 
-    public int get_max(BST node) {
+    public int get_max(BST node) {//o(n)
         BST current = node;
         while (current != null && current.right != null) {
             current = current.right;
@@ -260,11 +260,11 @@ public class BST {
         return current.data;
     }
 
-    public void emptyLine() {
+    public void emptyLine() {//o(1)
         System.out.println("\n----------------------------");
     }
 
-    public BST delete(int target, BST node) {
+    public BST delete(int target, BST node) {//o(n)
         if (node == null) {
             return null;
         }
@@ -293,17 +293,18 @@ public class BST {
         return node;
     }
 
-    public BST deleteNode(int target) {
+    public BST deleteNode(int target) {//o(n)
         if (target == data && left == null && right == null) {
             return null;
         }
         return delete(target, this);
     }
-    private void specialDelete(BST node){
-        data=node.data;
-        left=node.left;
-        right=node.right;
-        node=null;
+
+    private void specialDelete(BST node) {//o(1)
+        data = node.data;
+        left = node.left;
+        right = node.right;
+        node = null;
     }
 
 }
