@@ -15,7 +15,7 @@ public class MinHeap {
         for (int i = 0; i < v.size(); i++) {
             this.array[i] = v.get(i);
         }
-        heapify();
+        //heapify();
     }
 ///get data from last to first to make heap
 
@@ -97,13 +97,34 @@ public class MinHeap {
         int p = (node - 1) / 2;
         return node == 0 ? -1 : p;
     }
-    public void print_less_than(int val,int parentPos){
-        if(parentPos==-1||array[parentPos]>=val){
+
+    public void print_less_than(int val, int parentPos) {
+        if (parentPos == -1 || array[parentPos] >= val) {
             return;
         }
-        System.out.print(array[parentPos]+" ");
-        print_less_than(val,left(parentPos));
-        print_less_than(val,right(parentPos));
+        System.out.print(array[parentPos] + " ");
+        print_less_than(val, left(parentPos));
+        print_less_than(val, right(parentPos));
+    }
+
+    public boolean is_heap_array(int p, int n) {
+        return true;
+    }
+
+    public boolean is_heap_array(int indP) {
+        int indLeft = left(indP);
+        int indRight = right(indP);
+        if (indLeft == -1 || indRight == -1) {
+            return true;
+        }
+
+        if (array[indP] > array[indLeft] || array[indP] > array[indRight]) {
+            return false;
+        }
+        boolean leftHeap = is_heap_array(indLeft);
+        boolean rightHeap = is_heap_array(indRight);
+
+        return leftHeap && rightHeap;
     }
 
     public void print() {//o(n)

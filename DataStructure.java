@@ -4,7 +4,7 @@ import Heap.MinHeap;
 import java.util.Vector;
 
 public class DataStructure {
-
+    
     static void insertion(int[] arr) {//take 0.91 time
         int size = arr.length, temp = 0;
         for (int i = 1; i < size; i++) {
@@ -18,7 +18,7 @@ public class DataStructure {
             }
         }
     }
-
+    
     static void insertion2(int[] arr) {//take 0.57 time
         int n = arr.length;
         for (int i = 1; i < n; i++) {
@@ -31,7 +31,7 @@ public class DataStructure {
             arr[j + 1] = key;
         }
     }
-
+    
     static void selectionSort2(int[] arr) {
         int size = arr.length, maxInd = size;
         for (int i = 0; i < size - 1; i++) {
@@ -46,9 +46,9 @@ public class DataStructure {
             arr[i] = temp;
         }
     }
-
+    
     static int first = 0, second = 1;
-
+    
     static void fibon(int n) {
         if (n == 2) {
             return;
@@ -59,7 +59,7 @@ public class DataStructure {
         System.out.print(sum + " ");
         fibon(n - 1);
     }
-
+    
     static int fib(int n) {
         if (n == 1 || n == 0) {
             return n;
@@ -101,7 +101,7 @@ public class DataStructure {
         }
         return false;
     }
-
+    
     static void bubbleSort(int[] arr) {//o(n2)
         int size = arr.length;
         boolean flag = true;
@@ -136,7 +136,7 @@ public class DataStructure {
             arr[i] = temp;
         }
     }
-
+    
     public static void main(String[] args) throws InterruptedException {
         int[] arr = {20, 10, 4, 5, 3};
         selectionSort(arr);
@@ -210,7 +210,9 @@ public class DataStructure {
         heap.popTop();
         heap.print();
         System.out.println(heap.length());
-        heap.print_less_than(10,0);
+        heap.print_less_than(10, 0);
+        System.out.println("");
+        System.out.println(heap.is_heap_array(0));
 
 //        //////////////////////////////////////////////////////////////////////
 //        vector.insert(20, 1);
@@ -388,5 +390,5 @@ public class DataStructure {
 //        n4.left = n2;
 //        print_inOrder(n1);
     }
-
+    
 }
