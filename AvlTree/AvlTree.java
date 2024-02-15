@@ -44,4 +44,19 @@ public class AvlTree {
         return p;
     }
 
+    public AvlTree balance(AvlTree node) {
+        if (node.balanceFactor() == -2) {//Right Right
+            if (node.right.balanceFactor() == 1) {//Right Left
+                node.right = rightRotate(node.right);
+            }
+            node = leftRotate(node);
+        } else if (node.balanceFactor() == 2) {//Left Left
+            if (node.left.balanceFactor() == -1) {//Left Right
+                node.left = leftRotate(node.left);
+            }
+            node = rightRotate(node);
+        }
+        return node;
+    }
+
 }
