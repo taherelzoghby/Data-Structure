@@ -83,19 +83,19 @@ public class MinHeap {
         return array[0];
     }
 
-    public int left(int node) {//o(1)
-        int ch1 = 2 * node + 1;
+    public int left(int nodeIndex) {//o(1)
+        int ch1 = 2 * nodeIndex + 1;
         return ch1 >= size ? -1 : ch1;
     }
 
-    public int right(int node) {//o(1)
-        int ch2 = 2 * node + 2;
+    public int right(int nodeIndex) {//o(1)
+        int ch2 = 2 * nodeIndex + 2;
         return ch2 >= size ? -1 : ch2;
     }
 
-    public int parent(int node) {//o(1)
-        int p = (node - 1) / 2;
-        return node == 0 ? -1 : p;
+    public int parent(int nodeIndex) {//o(1)
+        int p = (nodeIndex - 1) / 2;
+        return nodeIndex == 0 ? -1 : p;
     }
 
     public void print_less_than(int val, int parentPos) {
@@ -134,6 +134,34 @@ public class MinHeap {
             }
         }
         System.out.println("");
+    }
+
+    public int search(int value) {
+        return recursiveSearch(value, 0);
+    }
+
+    public int recursiveSearch(int value, int index) {
+        if (index >= size) {
+            return -1;
+        }
+        if (value == array[index]) {
+            return index;
+        }
+        int indLeft = left(index);
+        int indRight = right(index);
+        if (indLeft!=-1&&indLeft < size && array[indLeft] <= value) {
+            int result = recursiveSearch(value, indLeft);
+            if (result != -1) {
+                return result;
+            }
+        }
+        if (indRight!=-1&&indRight < size && array[indRight] <= value) {
+            int result = recursiveSearch(value, indRight);
+            if (result != -1) {
+                return result;
+            }
+        }
+        return -1;
     }
 
     public void print() {//o(n)

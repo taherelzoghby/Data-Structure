@@ -138,12 +138,12 @@ public class DataStructure {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        int[] arr = {20, 10, 4, 5, 3};
-        selectionSort(arr);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(" " + arr[i]);
-        }
-        System.out.println("");
+//        int[] arr = {20, 10, 4, 5, 3};
+//        selectionSort(arr);
+//        for (int i = 0; i < arr.length; i++) {
+//            System.out.print(" " + arr[i]);
+//        }
+//        System.out.println("");
         //        NodeLinked node1 = new NodeLinked(10);
         //        NodeLinked node2 = new NodeLinked(20);
         //        NodeLinked node3 = new NodeLinked(30);
@@ -207,18 +207,19 @@ public class DataStructure {
 //        heap.popTop();
 //        heap.popTop();
 //        heap.popTop();
-        heap.popTop();
+        //heap.popTop();
         heap.print();
-        System.out.println(heap.length());
-        heap.print_less_than(10, 0);
-        System.out.println("");
-        System.out.println("is heap : " + heap.is_heap_array(0));
-        int sz = 14;
-        int[] arr1 = {2, 17, 22, 10, 8, 37, 14, 19, 7, 6, 5, 12, 25, 30};
-        heap.heap_sort(arr1, sz);
-        for(int i=0;i<arr1.length;i++){
-            System.out.print(arr1[i]+" ");
-        }
+        System.out.println(heap.search(50));
+        //System.out.println(heap.length());
+        //heap.print_less_than(10, 0);
+        //System.out.println("");
+        //System.out.println("is heap : " + heap.is_heap_array(0));
+        //int sz = 14;
+        //int[] arr1 = {2, 17, 22, 10, 8, 37, 14, 19, 7, 6, 5, 12, 25, 30};
+        //heap.heap_sort(arr1, sz);
+//        for(int i=0;i<arr1.length;i++){
+//            System.out.print(arr1[i]+" ");
+//        }
 
 //        //////////////////////////////////////////////////////////////////////
 //        vector.insert(20, 1);
