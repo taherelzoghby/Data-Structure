@@ -2,32 +2,14 @@ package AvlTree;
 
 public class AvlTree {
 
-    public int data;
-    public int height;
-    public AvlTree left;
-    public AvlTree right;
+    public NodeTree root;
 
     public AvlTree(int data) {
-        this.data = data;
+        this.root = new NodeTree(data);
     }
 
-    public int childHeight(AvlTree node) {
-        if (node == null) {
-            return -1;
-        }
-        return node.height;
-    }
-
-    public void updateHeight() {
-        height = 1 + Math.max(childHeight(left), childHeight(right));
-    }
-
-    public int balanceFactor() {
-        return childHeight(left) - childHeight(right);
-    }
-
-    public AvlTree leftRotate(AvlTree p) {
-        AvlTree q = p.right;
+    public NodeTree leftRotate(NodeTree p) {
+        NodeTree q = p.right;
         p.right = q.left;
         q.left = p;
         p.updateHeight();
@@ -35,8 +17,8 @@ public class AvlTree {
         return q;
     }
 
-    public AvlTree rightRotate(AvlTree q) {
-        AvlTree p = q.left;
+    public NodeTree rightRotate(NodeTree q) {
+        NodeTree p = q.left;
         q.left = p.right;
         p.right = q;
         p.updateHeight();
@@ -44,7 +26,7 @@ public class AvlTree {
         return p;
     }
 
-    public AvlTree balance(AvlTree node) {
+    public NodeTree balance(NodeTree node) {
         if (node.balanceFactor() == -2) {//Right Right
             if (node.right.balanceFactor() == 1) {//Right Left
                 node.right = rightRotate(node.right);
@@ -59,4 +41,29 @@ public class AvlTree {
         return node;
     }
 
+    public void insert(int target) {
+        if (root == null) {
+            root = new NodeTree(target);
+        } else {
+            root = insertNode(target, root);
+        }
+    }
+
+    public NodeTree insertNode(int target, NodeTree node) {
+        if (target < node.data) {
+            if (node.left == null) {
+                node.left = new NodeTree(target);
+            } else {
+                node.left = insertNode(target, node.left);
+            }
+        } else {
+            if (node.right == null) {
+                node.right = new NodeTree(target);
+            } else {
+                node.right = insertNode(target, node.right);
+            }
+        }
+        node.updateHeight();
+        return balance(node);
+    }
 }

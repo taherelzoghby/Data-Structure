@@ -210,6 +210,7 @@ public class DataStructure {
         //heap.popTop();
         heap.print();
         System.out.println(heap.search(50));
+        heap.test_priority_queue();
         //System.out.println(heap.length());
         //heap.print_less_than(10, 0);
         //System.out.println("");

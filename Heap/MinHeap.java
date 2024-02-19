@@ -1,5 +1,6 @@
 package Heap;
 
+import java.util.PriorityQueue;
 import java.util.Vector;
 
 public class MinHeap {
@@ -136,7 +137,7 @@ public class MinHeap {
         System.out.println("");
     }
 
-    public int search(int value) {
+    public int search(int value) {//o(log(n))
         return recursiveSearch(value, 0);
     }
 
@@ -149,19 +150,33 @@ public class MinHeap {
         }
         int indLeft = left(index);
         int indRight = right(index);
-        if (indLeft!=-1&&indLeft < size && array[indLeft] <= value) {
+        if (indLeft != -1 && indLeft < size && array[indLeft] <= value) {
             int result = recursiveSearch(value, indLeft);
             if (result != -1) {
                 return result;
             }
         }
-        if (indRight!=-1&&indRight < size && array[indRight] <= value) {
+        if (indRight != -1 && indRight < size && array[indRight] <= value) {
             int result = recursiveSearch(value, indRight);
             if (result != -1) {
                 return result;
             }
         }
         return -1;
+    }
+
+    public void test_priority_queue() {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.add(1);
+        pq.add(3);
+        pq.add(7);
+        pq.add(5);
+        pq.add(9);
+        while(!pq.isEmpty()){
+            System.out.print(pq.peek()+" ");
+            pq.poll();
+        }
+        System.out.println("");
     }
 
     public void print() {//o(n)
