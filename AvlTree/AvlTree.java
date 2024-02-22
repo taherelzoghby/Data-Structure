@@ -66,4 +66,48 @@ public class AvlTree {
         node.updateHeight();
         return balance(node);
     }
+
+    public void delete(int target) {
+        if (root != null) {
+            root = deleteNode(target, root);
+        }
+    }
+
+    public NodeTree deleteNode(int target, NodeTree node) {
+        if (node == null) {
+            return null;
+        }
+        //prev=5
+        if (target > node.data) {//right
+            node.right = deleteNode(target, node.right);
+        } else if (target < node.data) {//left
+            node.left = deleteNode(target, node.left);
+        } else {//found
+            if (node.left == null && node.right == null) {
+                node = null;
+            } else if (node.left != null && node.right != null) {
+                NodeTree successor = minSubTree(node.right);
+                node.data = successor.data;
+                node.right = deleteNode(successor.data, node.right);
+            } else if (node.left == null) {
+                node = node.right;
+            } else {
+                node = node.left;
+            }
+
+        }
+        if (node != null) {
+            node.updateHeight();
+            node = balance(node);
+        }
+
+        return node;
+    }
+
+    public NodeTree minSubTree(NodeTree node) {
+        if (node.left == null) {
+            return node;
+        }
+        return minSubTree(node.left);
+    }
 }

@@ -3,8 +3,7 @@ package AvlTree;
 public class test {
 
     public static void main(String[] args) {
-        AvlTree tree = new AvlTree(3);
-        tree.insert(5);
+        AvlTree tree = new AvlTree(5);
         tree.insert(9);
         tree.insert(1);
         tree.insert(0);
@@ -13,8 +12,9 @@ public class test {
         tree.insert(10);
         tree.insert(7);
         tree.insert(4);
-        tree.insert(8);
-        System.out.println(tree.root.left.right.data);
+        System.out.println(tree.root.data);
+        tree.delete(5);
+        System.out.println(tree.root.right.left.data);
     }
 
 }
