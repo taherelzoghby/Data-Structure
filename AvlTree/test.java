@@ -15,7 +15,7 @@ public class test {
         //System.out.println(tree.root.data);
         //tree.delete(5);
         //System.out.println(tree.root.right.left.data);
-        System.out.println("successor for 5 : "+tree.successor(1));
+        System.out.println("successor for 5 : "+tree.successor(5));
         tree.inOrder();
         tree.preOrder();
         tree.postOrder();

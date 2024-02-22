@@ -110,6 +110,13 @@ public class AvlTree {
         return min(node.left);
     }
 
+    public NodeTree max(NodeTree node) {
+        if (node.right == null) {
+            return node;
+        }
+        return max(node.right);
+    }
+
     public int successor(int target) {
         NodeTree node = search(target);//node(target)
         NodeTree successor = min(node.right);
