@@ -86,7 +86,7 @@ public class AvlTree {
             if (node.left == null && node.right == null) {
                 node = null;
             } else if (node.left != null && node.right != null) {
-                NodeTree successor = minSubTree(node.right);
+                NodeTree successor = min(node.right);
                 node.data = successor.data;
                 node.right = deleteNode(successor.data, node.right);
             } else if (node.left == null) {
@@ -100,14 +100,59 @@ public class AvlTree {
             node.updateHeight();
             node = balance(node);
         }
-
         return node;
     }
 
-    public NodeTree minSubTree(NodeTree node) {
+    public NodeTree min(NodeTree node) {
         if (node.left == null) {
             return node;
         }
-        return minSubTree(node.left);
+        return min(node.left);
     }
+
+    public void inOrder() {
+        System.out.print("in order traversal : ");
+        inOrderRecur(root);
+        System.out.println();
+    }
+
+    public void inOrderRecur(NodeTree node) {
+        if (node == null) {
+            return;
+        }
+        inOrderRecur(node.left);// go to left
+        System.out.print(node.data + " ");
+        inOrderRecur(node.right);// go to right
+    }
+
+    public void preOrder() {
+        System.out.print("pre order traversal : ");
+        preOrderRecur(root);
+        System.out.println();
+    }
+
+    public void preOrderRecur(NodeTree node) {
+        if (node == null) {
+            return;
+        }
+        System.out.print(node.data + " ");
+        preOrderRecur(node.left);// go to left
+        preOrderRecur(node.right);// go to right
+    }
+
+    public void postOrder() {
+        System.out.print("pre order traversal : ");
+        postOrderRecur(root);
+        System.out.println();
+    }
+
+    public void postOrderRecur(NodeTree node) {
+        if (node == null) {
+            return;
+        }
+        postOrderRecur(node.left);// go to left
+        postOrderRecur(node.right);// go to right
+        System.out.print(node.data + " ");
+    }
+
 }

@@ -12,9 +12,13 @@ public class test {
         tree.insert(10);
         tree.insert(7);
         tree.insert(4);
-        System.out.println(tree.root.data);
-        tree.delete(5);
-        System.out.println(tree.root.right.left.data);
+        //System.out.println(tree.root.data);
+        //tree.delete(5);
+        //System.out.println(tree.root.right.left.data);
+        System.out.println(tree.min(tree.root).data);
+        tree.inOrder();
+        tree.preOrder();
+        tree.postOrder();
     }
 
 }
