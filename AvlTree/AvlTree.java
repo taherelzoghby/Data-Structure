@@ -110,6 +110,27 @@ public class AvlTree {
         return min(node.left);
     }
 
+    public int successor(int target) {
+        NodeTree node = search(target);//node(target)
+        NodeTree successor = min(node.right);
+        return successor.data;
+    }
+
+    public NodeTree search(int target) {
+        return searchRecur(target, root);
+    }
+
+    public NodeTree searchRecur(int target, NodeTree node) {
+        if (node == null || node.data == target) {
+            return node;
+        }
+        if (target < node.data) {
+            return searchRecur(target, node.left);
+        } else {
+            return searchRecur(target, node.right);
+        }
+    }
+
     public void inOrder() {
         System.out.print("in order traversal : ");
         inOrderRecur(root);
