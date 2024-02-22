@@ -123,6 +123,12 @@ public class AvlTree {
         return successor.data;
     }
 
+    public int predecessor(int target) {
+        NodeTree nodeValue = search(target);
+        NodeTree predecessor = max(nodeValue.left);
+        return predecessor.data;
+    }
+
     public NodeTree search(int target) {
         return searchRecur(target, root);
     }
