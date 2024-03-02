@@ -175,7 +175,7 @@ public class AvlTree {
     }
 
     public void postOrder() {
-        System.out.print("pre order traversal : ");
+        System.out.print("post order traversal : ");
         postOrderRecur(root);
         System.out.println();
     }
