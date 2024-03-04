@@ -1,5 +1,6 @@
-package hashing;
+package hashing.chaining;
 
+import hashing.PhoneEntry;
 import java.util.Vector;
 
 public class PhoneHashTable {

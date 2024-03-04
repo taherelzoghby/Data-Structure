@@ -1,5 +1,6 @@
 package hashing;
 
+import hashing.probing.PhoneHashTable;
 import java.util.Vector;
 
 public class test {
@@ -38,21 +39,19 @@ public class test {
     }
 
     public static void main(String[] args) {
-        System.out.println(hashStringLowerUpperDigits("ABC233", 10));
-//        PhoneHashTable phoneHash = new PhoneHashTable(10);
-//        phoneHash.put(new PhoneEntry("kareem", "201023412234"));
-//        phoneHash.put(new PhoneEntry("ahmed", "201023412224"));
-//        phoneHash.put(new PhoneEntry("taher", "202224"));
-//        phoneHash.put(new PhoneEntry("taherr", "201023412224"));
-//        phoneHash.put(new PhoneEntry("mahmoud", "201023412234"));
-//        phoneHash.put(new PhoneEntry("gazy", "201023412224"));
-//        phoneHash.put(new PhoneEntry("hamo", "201023412224"));
-//        phoneHash.put(new PhoneEntry("dinaa", "201023412224"));
-//        phoneHash.put(new PhoneEntry("tahr", "201023412224"));
-//        phoneHash.put(new PhoneEntry("mamoud", "201023412234"));
-//        phoneHash.put(new PhoneEntry("gazzy", "201023412224"));
-//        phoneHash.put(new PhoneEntry("hamoo", "201023412224"));
-//        phoneHash.put(new PhoneEntry("dina", "201023412224"));
-//        phoneHash.print();
+        PhoneHashTable phoneHash = new PhoneHashTable(10);
+        phoneHash.put(new PhoneEntry("ahmed", "201023412224"));
+        phoneHash.put(new PhoneEntry("taher", "202224"));
+        phoneHash.put(new PhoneEntry("taherr", "201023412224"));
+        phoneHash.put(new PhoneEntry("mahmoud", "201023412234"));
+        phoneHash.put(new PhoneEntry("gazy", "201023412224"));
+        phoneHash.put(new PhoneEntry("hamo", "201023412224"));
+        phoneHash.put(new PhoneEntry("dinaa", "201023412224"));
+        phoneHash.put(new PhoneEntry("tahr", "201023412224"));
+        phoneHash.put(new PhoneEntry("mamoud", "201023412234"));
+        phoneHash.put(new PhoneEntry("gazzzy", "201023412224"));
+        phoneHash.print();
+        System.out.println(phoneHash.get(new PhoneEntry("hamo", "201023412224")));
+
     }
 }
