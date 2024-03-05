@@ -8,7 +8,7 @@ public class AvlTree {
         this.root = new NodeTree(data);
     }
 
-    public NodeTree leftRotate(NodeTree p) {
+    public NodeTree leftRotate(NodeTree p) {//o(1)time,memory
         NodeTree q = p.right;
         p.right = q.left;
         q.left = p;
@@ -41,7 +41,7 @@ public class AvlTree {
         return node;
     }
 
-    public void insert(int target) {
+    public void insert(int target) {//o(logn) time ,o(n)memory for worst case
         if (root == null) {
             root = new NodeTree(target);
         } else {

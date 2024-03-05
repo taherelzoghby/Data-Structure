@@ -16,7 +16,7 @@ public class PhoneHashTable {
         }
     }
 
-    public void put(PhoneEntry phone) {
+    public void put(PhoneEntry phone) {//o(n) time , o(1) memory
         int index = phone.hash() % tableSize;
         for (PhoneEntry itemPhone : table.get(index)) {
             if (itemPhone.name.equals(phone.name)) {
@@ -27,7 +27,7 @@ public class PhoneHashTable {
         table.get(index).addLast(phone);
     }
 
-    public boolean remove(PhoneEntry phone) {
+    public boolean remove(PhoneEntry phone) {//o(n) time , o(1) memory
         int index = phone.hash() % tableSize;
         for (PhoneEntry itemPhone : table.get(index)) {
             if (itemPhone.name.equals(phone.name)) {
@@ -40,7 +40,7 @@ public class PhoneHashTable {
         return false;
     }
 
-    public boolean get(PhoneEntry phone) {
+    public boolean get(PhoneEntry phone) {//o(n) time , o(1) memory
         int index = phone.hash() % tableSize;
         for (PhoneEntry itemPhone : table.get(index)) {
             if (itemPhone.name.equals(phone.name)) {
@@ -51,13 +51,13 @@ public class PhoneHashTable {
         return false;
     }
 
-    private void swap(PhoneEntry itemPhone, PhoneEntry last) {
+    private void swap(PhoneEntry itemPhone, PhoneEntry last) {//o(1) time , o(1) memory
         PhoneEntry temp = itemPhone;
         itemPhone = last;
         last = temp;
     }
 
-    public void print() {
+    public void print() {//o(n2) time , o(1) memory
         for (int i = 0; i < tableSize; i++) {
             if(table.get(i).isEmpty()){
                 continue;

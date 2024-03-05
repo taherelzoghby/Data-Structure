@@ -37,7 +37,7 @@ public class stackArrayDynamic<T> {
 
     }
 
-    private void ensureCapacity(int minCapacity) {
+    private void ensureCapacity(int minCapacity) {//o(n) for time ,memory
         int oldCapacity = stacArray.length;
         if (minCapacity > oldCapacity) {
             int newCapacity = oldCapacity * 2;
@@ -75,7 +75,7 @@ public class stackArrayDynamic<T> {
         return str.toString();
     }
 
-    public Object[] arr() {
+    public Object[] arr() {//o(n) for time , memory
         Object[] array = new Object[this.top + 1];
         for (int i = this.top; i >= 0; i--) {
             if (stacArray[i] != null) {
