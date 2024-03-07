@@ -271,6 +271,59 @@ public class Linkedlist<T> {
         System.out.println("");
     }
 
+    public void printRecursive(NodeLinked node) {
+        if (node == null) {
+            return;
+        }
+        System.out.print(node.value + " ");
+        printRecursive(node.next);
+
+    }
+
+    public void printRecursiveReverse(NodeLinked node) {
+        if (node == null) {
+            return;
+        }
+        printRecursiveReverse(node.next);
+        System.out.print(node.value + " ");
+    }
+
+    public void deleteNode(NodeLinked node) {
+        length--;
+        node = null;
+    }
+
+    public void deleteNextNode(NodeLinked node) {
+        assert node != null;
+
+        NodeLinked toDelete = node.next;
+        boolean isTail = toDelete == tail;
+
+        node.next = node.next.next;
+
+        deleteNode(toDelete);
+        if (isTail) {
+            tail = node;
+        }
+    }
+
+    public void removeAllDublicate() {
+        if (length <= 1) {
+            return;
+        }
+        for (NodeLinked curr = head; curr != null; curr = curr.next) {
+            for (NodeLinked cur = curr.next, prev = curr; cur != null;) {
+//                if (curr.value == cur.value) {
+//                    deleteNextNode(prev);
+//                    cur = prev.next;
+//                } else {
+                    prev = cur;
+                    cur=cur.next;
+                //}
+            }
+        }
+    }
+
     public String debug_toString() {//o(n)
         StringBuilder str = new StringBuilder();
         str.append("linkedlist : ");
