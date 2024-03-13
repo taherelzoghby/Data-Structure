@@ -313,14 +313,36 @@ public class Linkedlist<T> {
         }
         for (NodeLinked curr = head; curr != null; curr = curr.next) {
             for (NodeLinked cur = curr.next, prev = curr; cur != null;) {
-//                if (curr.value == cur.value) {
-//                    deleteNextNode(prev);
-//                    cur = prev.next;
-//                } else {
+                if (curr.value == cur.value) {
+                    deleteNextNode(prev);
+                    cur = prev.next;
+                } else {
                     prev = cur;
-                    cur=cur.next;
-                //}
+                    cur = cur.next;
+                }
             }
+        }
+    }
+
+    public void removeLastOccurance(Object key) {//o(n) time ,o(1) space
+        if (length <= 1) {
+            return;
+        }
+        NodeLinked last = null;
+        NodeLinked prevC = null;
+        for (NodeLinked curr = head, prev = null; curr != null; prev = curr, curr = curr.next) {
+            if (curr.value == key) {
+                last = curr;
+                prevC = prev;
+            }
+        }
+        if (last != null) {
+            if (prevC == null) {
+                head = last.next;
+            } else {
+                deleteNextNode(prevC);
+            }
+            last.next = null;
         }
     }
 
