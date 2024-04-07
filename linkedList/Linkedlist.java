@@ -441,4 +441,33 @@ public class Linkedlist<T> {
         //disconnect cycle
         tail.next = null;
     }
+
+    public void moveAllOccurance(T key) {//o(n) time , o(1) space
+        int size = 0;
+        for (NodeLinked curr = head, prev = null; size < length; size++) {
+            if (curr.value == key) {//prev not change
+                curr = moveToEnd(curr, prev);
+            } else {
+                prev = curr;
+                curr = curr.next;
+            }
+        }
+    }
+
+    NodeLinked moveToEnd(NodeLinked cur, NodeLinked prv) {
+        NodeLinked next = cur.next;
+        tail.next = cur;
+        if (prv != null) {
+            prv.next = next;
+        } else {
+            head = next;
+        }
+        tail = cur;
+        tail.next = null;
+        return next;
+    }
+
+    public int max() {
+        return 1;
+    }
 }

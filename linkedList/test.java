@@ -13,19 +13,9 @@ public class test {
         ll.addFirst(4);
         ll.addFirst(2);
         ll.addFirst(6);
-        //ll.printRecursive(ll.head);
-        //System.out.println("");
-        //ll.printRecursiveReverse(ll.head);
-        //ll.debug_verify_data_integrity();
-        //System.out.println("");
-        //System.out.println(ll.debug_toString());
         ll.printRecursive(ll.head);
         System.out.println("");
-        //ll.removeAllDublicate();
-        System.out.println("");
-        ll.printRecursive(ll.head);
-        System.out.println("");
-        ll.removeLastOccurance(6);
+        ll.moveAllOccurance(6);
         ll.printRecursive(ll.head);
         System.out.println("");
 
